@@ -1,0 +1,35 @@
+$primary-color: #991acf;
+$secondary-color: #086d32;
+$font-family: 'Arial, sans-serif';
+
+p {
+    font-size: large;
+}
+
+.footer-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    font-family: $font-family;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-nav {
+    margin-top: 10px;
+
+    a {
+        color: $primary-color;
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: large;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

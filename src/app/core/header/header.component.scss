@@ -1,0 +1,35 @@
+$primary-color: #991acf;
+$secondary-color: #086d32;
+$font-family: 'Arial, sans-serif';
+
+.header-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    font-family: $font-family;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.header-nav {
+    a {
+        color: $primary-color;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: large;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
