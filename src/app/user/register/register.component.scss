@@ -1,0 +1,89 @@
+// Variables
+$primary-color: #991acf;
+$secondary-color: #086d32;
+$font-family: 'Arial, sans-serif';
+
+// Mixin for flexbox centering
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Container styling
+.register-container {
+    @include flex-center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+// Form styling
+.register-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+
+    h2 {
+        margin-bottom: 20px;
+        color: $primary-color;
+        font-family: $font-family;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-family: $font-family;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: $font-family;
+        }
+    }
+
+    .register-button {
+        width: 100%;
+        padding: 10px;
+        background-color: $primary-color;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: $font-family;
+        transition: background-color 0.3s;
+        font-size: large;
+
+        &:hover {
+            background-color: darken($primary-color, 10%);
+        }
+    }
+
+    .login-link {
+        margin-top: 15px;
+        text-align: center;
+        color: $secondary-color;
+        font-family: $font-family;
+
+        a {
+            color: $secondary-color;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
