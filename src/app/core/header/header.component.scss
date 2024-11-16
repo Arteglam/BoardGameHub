@@ -2,6 +2,11 @@ $primary-color: #991acf;
 $secondary-color: #086d32;
 $font-family: 'Arial, sans-serif';
 
+h1 {
+    color: $primary-color;
+    text-align: center;
+}
+
 .header-container {
     background-color: #f9f9f9;
     padding: 20px;
