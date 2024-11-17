@@ -1,40 +1,43 @@
-$primary-color: #991acf;
-$secondary-color: #086d32;
-$font-family: 'Arial, sans-serif';
-
-h1 {
-    color: $primary-color;
-    text-align: center;
-}
-
 .header-container {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
-    font-family: $font-family;
+  background-color: #1e88e5; /* Primary color from azure-blue theme */
+  font-family: Arial, sans-serif;
 }
 
 .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
 }
 
 .logo img {
-    height: 50px;
+  height: 50px;
+}
+
+.header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5em;
+  color: #fff;
 }
 
 .header-nav {
-    a {
-        color: $primary-color;
-        text-decoration: none;
-        margin: 0 15px;
-        font-size: large;
+  display: flex;
+  gap: 15px;
+}
 
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+.header-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: large;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+mat-toolbar {
+  background-color: #1e88e5; /* Primary color from azure-blue theme */
 }

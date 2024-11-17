@@ -1,15 +1,23 @@
 <header class="header-container">
-  <div class="header-content">
-    <div class="logo">
-      <a href="/">
-        <img src="/logo.webp" alt="Logo" />
-      </a>
+  <mat-toolbar color="primary">
+    <div class="header-content">
+      <div class="logo">
+        <a routerLink="/">
+          <img src="/logo.webp" alt="Logo" />
+        </a>
+      </div>
+      <h1 class="header-title">Board Game Hub</h1>
+      <nav class="header-nav">
+        <!-- Logic for guests -->
+        <a mat-button routerLink="/home">Home</a>
+        <a mat-button routerLink="/catalog">Catalog</a>
+        <a mat-button routerLink="/register">Register</a>
+        <a mat-button routerLink="/login">Login</a>
+        <!-- Logic for registered users -->
+        <a mat-button routerLink="/create">Create Game</a>
+        <a mat-button routerLink="/profile">My Profile</a>
+        <a mat-button routerLink="/logout" class="hidden">Logout</a>
+      </nav>
     </div>
-    <h1>Board Game Hub</h1>
-    <nav class="header-nav">
-      <a routerLink="/home">Home</a>
-      <a routerLink="/register">Register</a>
-      <a routerLink="/login">Login</a>
-    </nav>
-  </div>
+  </mat-toolbar>
 </header>

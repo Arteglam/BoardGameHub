@@ -1,17 +1,26 @@
 <div class="login-container">
-    <form class="login-form">
-        <h2>Login</h2>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password">
-        </div>
-        <button type="submit" class="login-button">Sign In!</button>
-        <div class="register-link">
-            Don't have an account? <a href="/register">Register</a>
-        </div>
+  <mat-card class="login-card">
+    <h2>Login</h2>
+    <form>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" name="username" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" name="password" required />
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="login-button"
+      >
+        Sign In
+      </button>
+      <div class="register-link">
+        Don't have an account? <a routerLink="/register">Register</a>
+      </div>
     </form>
+  </mat-card>
 </div>

@@ -1,85 +1,47 @@
-$primary-color: #991acf;
-$secondary-color: #086d32;
-$font-family: "Arial, sans-serif";
-
-@mixin flex-center {
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
+  background-color: #f0f4f8; /* Light background color */
 }
 
-body,
-html {
-  height: 100%;
-  margin: 0;
-}
-
-.login-container {
-  @include flex-center;
-  height: 100vh; // Full viewport height
-  background-color: #f9f9f9;
-}
-
-.login-form {
-  max-width: 400px;
-  width: 100%;
+.login-card {
   padding: 20px;
-  border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  width: 600px; /* Ensure consistent width */
+  min-height: 400px; /* Ensure consistent height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-h2 {
-  margin-bottom: 20px;
-  color: $primary-color;
-  font-family: $font-family;
-  text-align: center;
-}
-
-.form-group {
-  margin-bottom: 15px;
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    font-family: $font-family;
-  }
-
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: $font-family;
-  }
+.full-width {
+  width: 100%;
 }
 
 .login-button {
   width: 100%;
-  padding: 10px;
-  background-color: $primary-color;
+  margin-top: 20px;
+  background-color: #1e88e5; /* Primary color from azure-blue theme */
   color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: $font-family;
-  transition: background-color 0.3s;
-  font-size: large;
 
   &:hover {
-    background-color: darken($primary-color, 10%);
+    background-color: darken(#1e88e5, 10%);
   }
 }
 
 .register-link {
   margin-top: 15px;
   text-align: center;
-  color: $secondary-color;
-  font-family: $font-family;
+  color: #086d32; /* Secondary color from azure-blue theme */
+  font-family: Arial, sans-serif;
 
   a {
-    color: $secondary-color;
+    color: #086d32; /* Secondary color from azure-blue theme */
     text-decoration: none;
 
     &:hover {

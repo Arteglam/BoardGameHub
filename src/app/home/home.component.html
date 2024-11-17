@@ -1,6 +1,23 @@
-<div class="example-label">Raised</div>
-<div class="example-button-row">
-  <button mat-raised-button>Basic</button>
-  <button mat-raised-button disabled>Disabled</button>
-  <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
+<div class="home-container">
+  <mat-toolbar color="primary">
+    <span>Welcome to Board Game Hub</span>
+  </mat-toolbar>
+
+  <div class="home-content">
+    <mat-card class="home-card">
+      <mat-card-header>
+        <mat-card-title>Featured Game</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="assets/featured-game.jpg" alt="Featured Game" />
+      <mat-card-content>
+        <p>
+          Discover the most exciting board games and join our community of
+          enthusiasts!
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Learn More</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
