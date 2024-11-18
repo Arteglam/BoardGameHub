@@ -1,3 +1,14 @@
 export const environment = {
-    apiUrl: 'http://localhost:3000/api',
-};
+    production: false,
+    firebase: {
+        apiKey: "AIzaSyADrNzHBpwOWXGL1O4rHCgO2kykeCERwDg",
+        authDomain: "boardgamehub-4a607.firebaseapp.com",
+        projectId: "boardgamehub-4a607",
+        storageBucket: "boardgamehub-4a607.firebasestorage.app",
+        messagingSenderId: "190755874991",
+        appId: "1:190755874991:web:eb0bf26547ee3067584c5a"
+    }
+}
+
+
+
