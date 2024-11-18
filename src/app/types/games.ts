@@ -8,7 +8,7 @@ export interface Game {
     artist: string;
     publisher: string;
     rating: number;
-    category: string[];
+    category: string;
     description: string;
     image: string;
     addedBy: User;

@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
-import { addDoc, collection, deleteDoc, doc, Firestore, getDocFromServer, setDoc, updateDoc } from "@angular/fire/firestore";
+import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, updateDoc } from "@angular/fire/firestore";
+import { Observable } from "rxjs";
+import { Game } from "../types/games";
 
 @Injectable({
     providedIn: 'root'
@@ -8,36 +10,42 @@ export class FirestoreService {
     constructor(
         private firestore: Firestore) { }
 
-    //Requests to single documents
-    private async createDocument(docPath: string, data: any): Promise<void> {
-        const docReference = doc(this.firestore, docPath);
-        await setDoc(docReference, data);
-    }
+ // Create a new game
+ async createGame(game: Game): Promise<void> {
+    const gamesCollection = collection(this.firestore, 'Games');
+    const docRef = await addDoc(gamesCollection, game);
+    console.log('Game created with ID:', docRef.id);
+  }
 
-    private async addDocument(collectionPath: string, data: any) {
-        const collectionRef = collection(this.firestore, collectionPath);
-        const doc = await addDoc(collectionRef, data);
-        return doc.id;
-    }
+  // Read all games
+  getGames(): Observable<Game[]> {
+    const gamesCollection = collection(this.firestore, 'Games');
+    return collectionData(gamesCollection, { idField: '_id' }) as Observable<Game[]>;
+  }
 
-    private async getDocument<T>(docPath: string): Promise<T | null> {
-        const docReference = doc(this.firestore, docPath);
-        const docSnap = await getDocFromServer(docReference);
-        if (docSnap.exists()) {
-            return docSnap.data() as T;
-        } else {
-            return null;
-        }
+  // Read a single game by ID
+  async getGameById(id: string): Promise<Game | null> {
+    const docRef = doc(this.firestore, `Games/${id}`);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data() as Game;
+    } else {
+      console.log('No such document!');
+      return null;
     }
+  }
 
-    private async updateDocument(collectionPath: string, data: any): Promise<void> {
-        const docRef = doc(this.firestore, collectionPath);
-        await updateDoc(docRef, data);
-    }
+  // Update a game by ID
+  async updateGame(id: string, game: Partial<Game>): Promise<void> {
+    const docRef = doc(this.firestore, `Games/${id}`);
+    await updateDoc(docRef, game);
+    console.log('Game updated with ID:', id);
+  }
 
-    private async deleteDocument(docPath: string): Promise<void> {
-        const docRef = doc(this.firestore, docPath);
-        await deleteDoc(docRef);
-    }
-
+  // Delete a game by ID
+  async deleteGame(id: string): Promise<void> {
+    const docRef = doc(this.firestore, `Games/${id}`);
+    await deleteDoc(docRef);
+    console.log('Game deleted with ID:', id);
+  }
 }
