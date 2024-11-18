@@ -1,24 +1,27 @@
 import { Injectable } from "@angular/core";
 import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, User, UserCredential } from "@angular/fire/auth";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class FireAuthService {
     private user: User | null = null;
-    constructor(
-        private auth: Auth
-    ) {
 
+    constructor(private auth: Auth) {
+        this.listenToAuthStateChanges();
     }
 
     // Listen to auth state changes
     private listenToAuthStateChanges(): void {
         authState(this.auth).subscribe((user: User | null) => {
+            this.user = user;
             if (user) {
                 // User is signed in
+                console.log('User signed in:', user);
             } else {
                 // User is signed out
+                console.log('User signed out');
             }
         });
     }
@@ -40,5 +43,10 @@ export class FireAuthService {
     // Sign out
     public async signOut(): Promise<void> {
         await this.auth.signOut();
+    }
+
+    // Get the current user
+    public getUser(): Observable<User | null> {
+        return authState(this.auth);
     }
 }

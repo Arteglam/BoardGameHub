@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, updateDoc } from "@angular/fire/firestore";
+import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, setDoc, updateDoc } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { Game } from "../types/games";
 
@@ -48,4 +48,21 @@ export class FirestoreService {
     await deleteDoc(docRef);
     console.log('Game deleted with ID:', id);
   }
+
+    // Create user profile
+    async createUserProfile(userId: string, profileData: { email: string, username: string }): Promise<void> {
+      const userDocRef = doc(this.firestore, `Users/${userId}`);
+      await setDoc(userDocRef, profileData);
+    }
+
+    async getUserProfile(userId: string): Promise<{ email: string, displayName: string } | null> {
+      const userDocRef = doc(this.firestore, `Users/${userId}`);
+      const userDocSnap = await getDoc(userDocRef);
+      if (userDocSnap.exists()) {
+        return userDocSnap.data() as { email: string, displayName: string };
+      } else {
+        console.log('No such user profile!');
+        return null;
+      }
+    }
 }
