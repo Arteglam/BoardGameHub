@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-games-catalog',
   standalone: true,
-  imports: [MaterialLibraryModule, CommonModule, RouterLink],
+  imports: [MaterialLibraryModule, RouterLink, CommonModule],
   templateUrl: './games-catalog.component.html',
   styleUrl: './games-catalog.component.scss'
 })
@@ -25,12 +25,17 @@ export class GamesCatalogComponent implements OnInit {
     this.firestoreService.getGames().subscribe(
       (games: Game[]) => {
         this.games = games;
-        console.log('Games loaded:', this.games); // Debug statement
       },
       (error) => {
         console.error('Error loading games:', error); // Debug statement
       }
     );
+  }
+
+  trackById(index: number, game: Game): string {
+
+    return game._id;
+
   }
 }
 

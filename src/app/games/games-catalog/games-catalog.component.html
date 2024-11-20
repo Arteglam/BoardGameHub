@@ -1,5 +1,5 @@
 <div class="catalog-container">
-  <div class="game-card" *ngFor="let game of games">
+  <div class="game-card" *ngFor="let game of games; trackBy: trackById">
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{ game.title }}</mat-card-title>

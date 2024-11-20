@@ -7,6 +7,7 @@ import { GamesCatalogComponent } from './games/games-catalog/games-catalog.compo
 import { CreateGameComponent } from './games/create-game/create-game.component';
 import { Error404Component } from './errors/error404/error404.component';
 import { NgModule } from '@angular/core';
+import { EditGameComponent } from './games/edit-game/edit-game.component';
 import { DetailsComponent } from './games/details/details.component';
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'catalog', component: GamesCatalogComponent },
     { path: 'create', component: CreateGameComponent },
+    { path: 'edit/:id', component: EditGameComponent },
     { path: 'details/:id', component: DetailsComponent },
     { path: '**', component: Error404Component }
 ];
@@ -24,5 +26,5 @@ export const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
-  })
-  export class AppRoutingModule { }
+})
+export class AppRoutingModule { }
