@@ -4,16 +4,16 @@ import { Observable } from "rxjs";
 import { Game } from "../types/games";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class FirestoreService {
-    constructor(
-        private firestore: Firestore) { }
+  constructor(private firestore: Firestore) { }
 
- // Create a new game
- async createGame(game: Game): Promise<void> {
+  // Create a new game
+  async createGame(game: Game): Promise<void> {
     const gamesCollection = collection(this.firestore, 'Games');
     const docRef = await addDoc(gamesCollection, game);
+    await updateDoc(docRef, { _id: docRef.id }); // Set the document ID in the game object
     console.log('Game created with ID:', docRef.id);
   }
 
@@ -49,20 +49,52 @@ export class FirestoreService {
     console.log('Game deleted with ID:', id);
   }
 
-    // Create user profile
-    async createUserProfile(userId: string, profileData: { email: string, username: string }): Promise<void> {
-      const userDocRef = doc(this.firestore, `Users/${userId}`);
-      await setDoc(userDocRef, profileData);
-    }
+  // Create user profile
+  async createUserProfile(userId: string, profileData: { email: string, username: string }): Promise<void> {
+    const userDocRef = doc(this.firestore, `Users/${userId}`);
+    await setDoc(userDocRef, profileData);
+  }
 
-    async getUserProfile(userId: string): Promise<{ email: string, displayName: string } | null> {
-      const userDocRef = doc(this.firestore, `Users/${userId}`);
-      const userDocSnap = await getDoc(userDocRef);
-      if (userDocSnap.exists()) {
-        return userDocSnap.data() as { email: string, displayName: string };
-      } else {
-        console.log('No such user profile!');
-        return null;
-      }
+  // Get user profile
+  async getUserProfile(userId: string): Promise<{ email: string, displayName: string } | null> {
+    const userDocRef = doc(this.firestore, `Users/${userId}`);
+    const userDocSnap = await getDoc(userDocRef);
+    if (userDocSnap.exists()) {
+      return userDocSnap.data() as { email: string, displayName: string };
+    } else {
+      console.log('No such user profile!');
+      return null;
     }
+  }
+
+  // Add game to user profile
+  async addGameToUserProfile(userId: string, game: Game): Promise<void> {
+    const userGamesCollection = collection(this.firestore, `Users/${userId}/Games`);
+    await setDoc(doc(userGamesCollection, game._id), game); // Use setDoc with game ID
+  }
+
+  // Get games from user profile
+  getUserGames(userId: string): Observable<Game[]> {
+    const userGamesCollection = collection(this.firestore, `Users/${userId}/Games`);
+    return collectionData(userGamesCollection, { idField: '_id' }) as Observable<Game[]>;
+  }
+
+  // Remove game from user profile
+  async removeGameFromUserProfile(userId: string, gameId: string): Promise<void> {
+    const gameDocRef = doc(this.firestore, `Users/${userId}/Games/${gameId}`);
+    await deleteDoc(gameDocRef);
+  }
+
+  // Check if game is in user profile
+  async isGameInUserProfile(userId: string, gameId: string): Promise<boolean> {
+    const gameDocRef = doc(this.firestore, `Users/${userId}/Games/${gameId}`);
+    const gameDocSnap = await getDoc(gameDocRef);
+    return gameDocSnap.exists();
+  }
+
+   // Save contact form submission
+   async saveContactForm(contactData: { name: string, email: string, message: string }): Promise<void> {
+    const contactCollection = collection(this.firestore, 'ContactForms');
+    await addDoc(contactCollection, contactData);
+  }
 }

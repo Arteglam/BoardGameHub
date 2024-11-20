@@ -11,7 +11,7 @@ import { MaterialLibraryModule } from './material-library/material-library.modul
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    MaterialLibraryModule
+    MaterialLibraryModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

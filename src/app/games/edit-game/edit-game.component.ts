@@ -50,7 +50,7 @@ export class EditGameComponent implements OnInit {
   async onSave() {
     if (this.gameForm.valid) {
       await this.firestoreService.updateGame(this.gameId, this.gameForm.value);
-      this.router.navigate(['/catalog']);
+      this.router.navigate(['/details', this.gameId]);
     }
   }
 

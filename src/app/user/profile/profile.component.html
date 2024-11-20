@@ -1,28 +1,9 @@
-<div class="profile-container" *ngIf="user">
+<div class="profile-container" *ngIf="userProfile">
   <mat-card class="profile-card">
     <mat-card-title>User Profile</mat-card-title>
     <mat-card-content>
-      <p><strong>Name:</strong> {{ userProfile?.displayName }}</p>
-      <p><strong>Email:</strong> {{ userProfile?.email }}</p>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="games-card">
-    <mat-card-title>Available Games</mat-card-title>
-    <mat-card-content>
-      <div class="games-list">
-        <div class="game-item" *ngFor="let game of games">
-          <img [src]="game.image" alt="{{ game.title }}" class="game-image" />
-          <p>{{ game.title }}</p>
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="addGameToProfile(game)"
-          >
-            Add to Profile
-          </button>
-        </div>
-      </div>
+      <p><strong>Name:</strong> {{ userProfile.displayName }}</p>
+      <p><strong>Email:</strong> {{ userProfile.email }}</p>
     </mat-card-content>
   </mat-card>
 
@@ -31,7 +12,12 @@
     <mat-card-content>
       <div class="games-list">
         <div class="game-item" *ngFor="let game of userGames">
-          <img [src]="game.image" alt="{{ game.title }}" class="game-image" />
+          <div class="game-image-container">
+            <img [src]="game.image" alt="{{ game.title }}" class="game-image" />
+            <button mat-icon-button class="remove-button" (click)="confirmRemoveGame(game)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
           <p>{{ game.title }}</p>
         </div>
       </div>

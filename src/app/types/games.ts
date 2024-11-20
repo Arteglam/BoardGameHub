@@ -1,5 +1,3 @@
-import { User } from "./user";
-
 export interface Game {
     _id: string;
     title: string;
@@ -11,6 +9,4 @@ export interface Game {
     category: string;
     description: string;
     image: string;
-    addedBy: User;
-    creatorId: User;
 }

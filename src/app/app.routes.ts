@@ -9,6 +9,8 @@ import { Error404Component } from './errors/error404/error404.component';
 import { NgModule } from '@angular/core';
 import { EditGameComponent } from './games/edit-game/edit-game.component';
 import { DetailsComponent } from './games/details/details.component';
+import { AboutComponent } from './core/about/about.component';
+import { ContactComponent } from './core/contact/contact.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +22,8 @@ export const routes: Routes = [
     { path: 'create', component: CreateGameComponent },
     { path: 'edit/:id', component: EditGameComponent },
     { path: 'details/:id', component: DetailsComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'contact', component: ContactComponent },
     { path: '**', component: Error404Component }
 ];
 

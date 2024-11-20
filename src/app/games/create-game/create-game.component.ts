@@ -38,9 +38,7 @@ export class CreateGameComponent {
     if (this.gameForm.valid) {
       const newGame: Game = {
         _id: '',
-        ...this.gameForm.value,
-        addedBy: { /* User object */ },
-        creatorId: { /* User object */ }
+        ...this.gameForm.value
       };
   
       await this.firestoreService.createGame(newGame);
