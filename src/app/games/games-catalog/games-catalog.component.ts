@@ -18,6 +18,7 @@ export class GamesCatalogComponent implements OnInit {
   games: Game[] = [];
   user: User | null = null;
   userGameIds: Set<string> = new Set();
+  loading: boolean = true; // Add loading state
 
   constructor(
     private firestoreService: FirestoreService,
@@ -37,6 +38,7 @@ export class GamesCatalogComponent implements OnInit {
   loadGames(): void {
     this.firestoreService.getGames().subscribe((games: Game[]) => {
       this.games = games;
+      this.loading = false; // Set loading to false when games are loaded
     });
   }
 

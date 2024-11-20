@@ -7,16 +7,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const materialModules = [
-  MatButtonModule, 
-  MatInputModule, 
-  MatCardModule, 
+  MatButtonModule,
+  MatInputModule,
+  MatCardModule,
   MatFormFieldModule,
   MatToolbarModule,
   MatIconModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({

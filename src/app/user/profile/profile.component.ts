@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
   userProfile: { email: string, displayName: string } | null = null;
   userGames: Game[] = [];
   gameToRemove: Game | null = null;
+  loading: boolean = true; // Add loading state
+  
 
   constructor(
     private authService: FireAuthService,
@@ -40,6 +42,7 @@ export class ProfileComponent implements OnInit {
   loadUserGames(userId: string): void {
     this.firestoreService.getUserGames(userId).subscribe((games: Game[]) => {
       this.userGames = games;
+      this.loading = false; // Set loading to false when games are loaded
     });
   }
 
@@ -69,7 +72,7 @@ export class ProfileComponent implements OnInit {
   template: `
     <h1 mat-dialog-title>Confirm Removal</h1>
     <div mat-dialog-content>Are you sure you want to remove this game from your profile?</div>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions class="dialog-actions">
       <button mat-button [mat-dialog-close]="'remove'">Remove</button>
       <button mat-button mat-dialog-close>Cancel</button>
     </div>
