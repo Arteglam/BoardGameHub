@@ -4,11 +4,10 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { FireAuthService } from '../services/fireauth.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class GuestGuard implements CanActivate {
   constructor(private authService: FireAuthService, private router: Router) {}
 
   canActivate(
@@ -18,10 +17,10 @@ export class AuthGuard implements CanActivate {
     return this.authService.getUser().pipe(
       take(1),
       map(user => {
-        if (user) {
+        if (!user) {
           return true;
         } else {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
           return false;
         }
       })

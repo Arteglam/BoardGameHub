@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Game } from '../../types/games';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirestoreService } from '../../services/firestore.service';
+import { User } from '@angular/fire/auth';
+import { FireAuthService } from '../../services/fireauth.service';
 
 @Component({
   selector: 'app-details',
@@ -15,17 +17,22 @@ import { FirestoreService } from '../../services/firestore.service';
 export class DetailsComponent implements OnInit {
   game: Game | null = null;
   gameId: string;
+  user: User | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private authService: FireAuthService
   ) {
     this.gameId = this.route.snapshot.paramMap.get('id')!;
   }
 
   ngOnInit(): void {
     this.loadGameDetails();
+    this.authService.getUser().subscribe(user => {
+      this.user = user;
+    });
   }
 
   async loadGameDetails() {

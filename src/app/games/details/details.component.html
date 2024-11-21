@@ -12,12 +12,8 @@
       <img [src]="game.image" alt="{{ game.title }}" class="game-image" />
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="editGame()">
-        Edit
-      </button>
-      <button mat-raised-button color="warn" (click)="deleteGame()">
-        Delete
-      </button>
+      <button mat-raised-button color="primary" (click)="editGame()" *ngIf="user">Edit</button>
+      <button mat-raised-button color="warn" (click)="deleteGame()" *ngIf="user">Delete</button>
     </mat-card-actions>
   </mat-card>
 </div>

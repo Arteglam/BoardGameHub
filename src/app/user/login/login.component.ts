@@ -4,6 +4,7 @@ import { MaterialLibraryModule } from '../../material-library/material-library.m
 import { Router, RouterLink } from '@angular/router';
 import { FireAuthService } from '../../services/fireauth.service';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: FireAuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -35,29 +37,12 @@ export class LoginComponent {
         this.router.navigate(['/profile']);
       } catch (error) {
         console.error('Error during login:', error);
-        if (error instanceof Error && 'code' in error) {
-          this.errorMessage = this.getErrorMessage((error as any).code);
-        } else {
-          this.errorMessage = 'An unknown error occurred';
-        }
+        this.snackBar.open('Login failed. Please check your credentials and try again.', 'Close', {
+          duration: 3000,
+        });
       }
     } else {
       this.errorMessage = 'Form is invalid';
-    }
-  }
-
-  private getErrorMessage(errorCode: string): string {
-    switch (errorCode) {
-      case 'auth/invalid-email':
-        return 'Invalid email format';
-      case 'auth/user-disabled':
-        return 'User account is disabled';
-      case 'auth/user-not-found':
-        return 'No user found with this email';
-      case 'auth/wrong-password':
-        return 'Incorrect password';
-      default:
-        return 'An unknown error occurred';
     }
   }
 }

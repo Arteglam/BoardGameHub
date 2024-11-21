@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, User, UserCredential } from "@angular/fire/auth";
+import { doc, Firestore, getDoc } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -8,20 +9,18 @@ import { Observable } from "rxjs";
 export class FireAuthService {
     private user: User | null = null;
 
-    constructor(private auth: Auth) {
+    constructor(private auth: Auth, private firestore: Firestore) {
         this.listenToAuthStateChanges();
-    }
+      }
 
     // Listen to auth state changes
     private listenToAuthStateChanges(): void {
         authState(this.auth).subscribe((user: User | null) => {
             this.user = user;
             if (user) {
-                // User is signed in
-                console.log('User signed in:', user);
+                             console.log('User signed in:', user);
             } else {
-                // User is signed out
-                console.log('User signed out');
+                               console.log('User signed out');
             }
         });
     }
@@ -35,10 +34,22 @@ export class FireAuthService {
         return cred;
     }
 
-    // Sign in with email and password
-    public signInWithEmailAndPassword(email: string, password: string): Promise<UserCredential> {
-        return signInWithEmailAndPassword(this.auth, email, password);
+   // Sign in with email and password
+   public async signInWithEmailAndPassword(email: string, password: string): Promise<UserCredential> {
+    const cred = await signInWithEmailAndPassword(this.auth, email, password);
+    if (cred.user) {
+      const userDocRef = doc(this.firestore, `Users/${cred.user.uid}`);
+      const userDocSnap = await getDoc(userDocRef);
+      if (userDocSnap.exists()) {
+        this.user = cred.user;
+        return cred;
+      } else {
+        await this.auth.signOut();
+        throw new Error('User does not exist in the database');
+      }
     }
+    return cred;
+  }
 
     // Sign out
     public async signOut(): Promise<void> {
