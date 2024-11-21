@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { MaterialLibraryModule } from '../../material-library/material-library.module';
 import { CommonModule } from '@angular/common';
 import { FireAuthService } from '../../services/fireauth.service';
-import { FirestoreService } from '../../services/firestore.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -15,34 +15,44 @@ import { FirestoreService } from '../../services/firestore.service';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private authService: FireAuthService,
-    private firestoreService: FirestoreService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.registerForm = this.fb.group({
       displayName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    }, { validator: this.passwordMatchValidator });
+  }
+
+  passwordMatchValidator(form: FormGroup) {
+    return form.get('password')?.value === form.get('confirmPassword')?.value
+      ? null : { mismatch: true };
   }
 
   async onSubmit() {
     if (this.registerForm.valid) {
       const { displayName, email, password } = this.registerForm.value;
       try {
-        const userCredential = await this.authService.signUpWithEmailAndPassword(email, password);
-        if (userCredential.user) {
-          await this.firestoreService.createUserProfile(userCredential.user.uid, { email, displayName });
-          this.router.navigate(['/profile']);
-        }
+        await this.authService.signUpWithEmailAndPassword(email, password, displayName);
+        this.snackBar.open('Registration successful!', 'Close', {
+          duration: 3000,
+        });
+        this.router.navigate(['/profile']);
       } catch (error) {
         console.error('Error during registration:', error);
+        this.snackBar.open('Registration failed. Please try again.', 'Close', {
+          duration: 3000,
+        });
       }
     } else {
-      console.error('Form is invalid');
+      this.errorMessage = 'Please fill out all required fields correctly.';
     }
   }
 }

@@ -42,7 +42,7 @@ export class LoginComponent {
         });
       }
     } else {
-      this.errorMessage = 'Form is invalid';
+      this.errorMessage = 'Please fill out all required fields correctly.';
     }
   }
 }
