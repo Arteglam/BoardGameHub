@@ -35,7 +35,7 @@ export class RegisterComponent {
       try {
         const userCredential = await this.authService.signUpWithEmailAndPassword(email, password);
         if (userCredential.user) {
-          await this.firestoreService.createUserProfile(userCredential.user.uid, { email, username: displayName });
+          await this.firestoreService.createUserProfile(userCredential.user.uid, { email, displayName });
           this.router.navigate(['/profile']);
         }
       } catch (error) {

@@ -50,7 +50,7 @@ export class FirestoreService {
   }
 
   // Create user profile
-  async createUserProfile(userId: string, profileData: { email: string, username: string }): Promise<void> {
+  async createUserProfile(userId: string, profileData: { email: string, displayName: string }): Promise<void> {
     const userDocRef = doc(this.firestore, `Users/${userId}`);
     await setDoc(userDocRef, profileData);
   }

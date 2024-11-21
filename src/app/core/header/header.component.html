@@ -11,12 +11,16 @@
         <!-- Logic for guests -->
         <a mat-button routerLink="/home">Home</a>
         <a mat-button routerLink="/catalog">Catalog</a>
-        <a mat-button routerLink="/register">Register</a>
-        <a mat-button routerLink="/login">Login</a>
         <!-- Logic for registered users -->
-        <a mat-button routerLink="/create">Create Game</a>
-        <a mat-button routerLink="/profile">My Profile</a>
-        <a mat-button routerLink="/logout" class="hidden">Logout</a>
+        <ng-container *ngIf="user; else guestLinks">
+          <a mat-button routerLink="/create">Create Game</a>
+          <a mat-button routerLink="/profile">My Profile</a>
+          <button mat-button (click)="signOut()">Logout</button>
+        </ng-container>
+        <ng-template #guestLinks>
+          <a mat-button routerLink="/register">Register</a>
+          <a mat-button routerLink="/login">Login</a>
+        </ng-template>
       </nav>
     </div>
   </mat-toolbar>
