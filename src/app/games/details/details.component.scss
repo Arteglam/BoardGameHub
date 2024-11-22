@@ -2,20 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  padding: 20px;
   background-color: #f0f4f8; /* Light background color */
 }
 
 .details-card {
+  width: 100%;
+  max-width: 800px; /* Ensure consistent width */
   padding: 20px;
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-  width: 600px; /* Ensure consistent width */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 mat-card-title {
@@ -25,12 +22,18 @@ mat-card-title {
   text-align: center;
 }
 
+mat-card-content {
+  font-size: 16px;
+  color: #333; /* Dark text color */
+}
+
 .game-image {
   width: 100%;
+  max-width: 100%; /* Ensure the image fits within the container */
   height: auto;
+  object-fit: cover;
+  margin-top: 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
 }
 
 mat-card-actions {

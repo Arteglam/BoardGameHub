@@ -49,4 +49,8 @@ export class DetailsComponent implements OnInit {
   editGame() {
     this.router.navigate(['/edit', this.gameId]);
   }
+
+  isCreator(): boolean {
+    return !!this.user && !!this.game && this.user.uid === this.game.userId;
+  }
 }

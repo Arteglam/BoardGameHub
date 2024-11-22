@@ -10,12 +10,10 @@
           <mat-panel-title>
             {{ game.title }}
           </mat-panel-title>
-          <mat-panel-description>
-            <strong>Year: </strong>{{ game.year }}
-          </mat-panel-description>
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent>
           <mat-card-content>
+            <p><strong>Year:</strong> {{ game.year }}</p>
             <p><strong>Designer:</strong> {{ game.designer }}</p>
             <p><strong>Artist:</strong> {{ game.artist }}</p>
             <p><strong>Publisher:</strong> {{ game.publisher }}</p>

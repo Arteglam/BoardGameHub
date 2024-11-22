@@ -9,4 +9,5 @@ export interface Game {
     category: string;
     description: string;
     image: string;
+    userId: string;
 }

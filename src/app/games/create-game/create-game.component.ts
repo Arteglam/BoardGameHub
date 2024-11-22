@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { FirestoreService } from '../../services/firestore.service';
 import { Game } from '../../types/games';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from '@angular/fire/auth';
+import { FireAuthService } from '../../services/fireauth.service';
 
 @Component({
   selector: 'app-create-game',
@@ -17,10 +19,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CreateGameComponent {
   gameForm: FormGroup;
   errorMessage: string | null = null;
+  user: User | null = null;
 
   constructor(
     private fb: FormBuilder,
     private firestoreService: FirestoreService,
+    private authService: FireAuthService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {
@@ -35,13 +39,17 @@ export class CreateGameComponent {
       description: ['', Validators.required],
       image: ['', Validators.required]
     });
+
+    this.authService.getUser().subscribe(user => {
+      this.user = user;
+    });
   }
 
   async onSubmit() {
-    if (this.gameForm.valid) {
+    if (this.gameForm.valid && this.user) {
       const newGame = this.gameForm.value;
       try {
-        await this.firestoreService.createGame(newGame);
+        await this.firestoreService.createGame(newGame, this.user.uid);
         this.snackBar.open('Game created successfully!', 'Close', {
           duration: 3000,
         });

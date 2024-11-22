@@ -10,44 +10,40 @@ import { getDownloadURL, ref, Storage, uploadBytes } from "@angular/fire/storage
 export class FirestoreService {
   constructor(private firestore: Firestore, private storage: Storage) { }
 
-  // Create a new game
-  async createGame(game: Game): Promise<void> {
-    const gamesCollection = collection(this.firestore, 'Games');
-    const docRef = await addDoc(gamesCollection, game);
-    await updateDoc(docRef, { _id: docRef.id }); // Set the document ID in the game object
-    console.log('Game created with ID:', docRef.id);
-  }
-
   // Read all games
   getGames(): Observable<Game[]> {
     const gamesCollection = collection(this.firestore, 'Games');
     return collectionData(gamesCollection, { idField: '_id' }) as Observable<Game[]>;
   }
 
-  // Read a single game by ID
-  async getGameById(id: string): Promise<Game | null> {
-    const docRef = doc(this.firestore, `Games/${id}`);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      return docSnap.data() as Game;
+  // Get game by ID
+  async getGameById(gameId: string): Promise<Game | null> {
+    const gameDocRef = doc(this.firestore, `Games/${gameId}`);
+    const gameDocSnap = await getDoc(gameDocRef);
+    if (gameDocSnap.exists()) {
+      return gameDocSnap.data() as Game;
     } else {
-      console.log('No such document!');
+      console.log('No such game!');
       return null;
     }
   }
 
-  // Update a game by ID
-  async updateGame(id: string, game: Partial<Game>): Promise<void> {
-    const docRef = doc(this.firestore, `Games/${id}`);
-    await updateDoc(docRef, game);
-    console.log('Game updated with ID:', id);
+   // Create a new game
+   async createGame(game: Game, userId: string): Promise<void> {
+    const gamesCollection = collection(this.firestore, 'Games');
+    await addDoc(gamesCollection, { ...game, userId });
   }
 
-  // Delete a game by ID
-  async deleteGame(id: string): Promise<void> {
-    const docRef = doc(this.firestore, `Games/${id}`);
-    await deleteDoc(docRef);
-    console.log('Game deleted with ID:', id);
+  // Update game
+  async updateGame(gameId: string, game: Partial<Game>): Promise<void> {
+    const gameDocRef = doc(this.firestore, `Games/${gameId}`);
+    await updateDoc(gameDocRef, game);
+  }
+
+  // Delete game
+  async deleteGame(gameId: string): Promise<void> {
+    const gameDocRef = doc(this.firestore, `Games/${gameId}`);
+    await deleteDoc(gameDocRef);
   }
 
   // Create user profile
