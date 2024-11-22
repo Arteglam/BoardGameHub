@@ -10,4 +10,5 @@ export interface Game {
     description: string;
     image: string;
     userId: string;
+    createdAt: { seconds: number };
 }

@@ -19,6 +19,7 @@ export class GamesCatalogComponent implements OnInit {
   user: User | null = null;
   userGameIds: Set<string> = new Set();
   loading: boolean = true;
+  sortCriteria: string = 'createdAt'; // Default sorting criteria
 
   constructor(
     private firestoreService: FirestoreService,
@@ -38,6 +39,7 @@ export class GamesCatalogComponent implements OnInit {
   loadGames(): void {
     this.firestoreService.getGames().subscribe((games: Game[]) => {
       this.games = games;
+      this.sortGames();
       this.loading = false;
     });
   }
@@ -59,6 +61,20 @@ export class GamesCatalogComponent implements OnInit {
     return this.userGameIds.has(gameId);
   }
 
+  onSortCriteriaChange(criteria: string): void {
+    this.sortCriteria = criteria;
+    this.sortGames();
+  }
+
+  sortGames(): void {
+    if (this.sortCriteria === 'rating') {
+      this.games.sort((a, b) => b.rating - a.rating);
+    } else if (this.sortCriteria === 'year') {
+      this.games.sort((a, b) => b.year - a.year);
+    } else {
+      this.games.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+    }
+  }
 
   trackById(index: number, game: Game): string {
 

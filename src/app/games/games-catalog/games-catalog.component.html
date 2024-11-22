@@ -29,4 +29,12 @@
       </mat-expansion-panel>
     </div>
   </div>
+  <mat-form-field appearance="fill" class="sort-dropdown">
+    <mat-label>Sort by</mat-label>
+    <mat-select [(value)]="sortCriteria" (selectionChange)="onSortCriteriaChange($event.value)">
+      <mat-option value="createdAt">Newest</mat-option>
+      <mat-option value="rating">Rating</mat-option>
+      <mat-option value="year">Year</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>

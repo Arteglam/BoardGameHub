@@ -77,3 +77,10 @@ mat-card-actions {
   display: flex;
   justify-content: space-between;
 }
+
+mat-form-field {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  margin: 0;
+}

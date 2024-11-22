@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, orderBy, query, Query, setDoc, updateDoc } from "@angular/fire/firestore";
+import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, orderBy, query, Query, setDoc, Timestamp, updateDoc } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { Game } from "../types/games";
 import { getDownloadURL, ref, Storage, uploadBytes } from "@angular/fire/storage";
@@ -32,7 +32,7 @@ export class FirestoreService {
    // Create a new game
    async createGame(game: Game, userId: string): Promise<void> {
     const gamesCollection = collection(this.firestore, 'Games');
-    await addDoc(gamesCollection, { ...game, userId, createdAt: new Date() });
+    await addDoc(gamesCollection, { ...game, userId, createdAt: Timestamp.now() });
   }
 
   // Update game
