@@ -49,6 +49,7 @@ mat-card-title {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  position: relative; /* Ensure the loader is positioned correctly */
 }
 
 .profile-image {
@@ -57,6 +58,13 @@ mat-card-title {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
+}
+
+.image-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .file-input-container {
@@ -68,11 +76,11 @@ mat-card-title {
 .file-input-label {
   background-color: #1e88e5; /* Primary color from azure-blue theme */
   color: #fff;
-  padding: 5px 20px;
+  padding: 5px 10px; /* Reduced padding */
   border-radius: 5px;
   cursor: pointer;
   margin-right: 10px;
-  font-size: 14px;
+  font-size: 14px; /* Adjust font size if needed */
 }
 
 .file-input-label:hover {

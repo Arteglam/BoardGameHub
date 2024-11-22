@@ -7,13 +7,16 @@
       <mat-card-title>User Profile</mat-card-title>
       <mat-card-content>
         <div class="profile-image-container">
-          <img *ngIf="userProfile?.profileImageUrl" [src]="userProfile?.profileImageUrl" alt="Profile Image" class="profile-image">
+          <img *ngIf="userProfile?.profileImageUrl && !imageLoading" [src]="userProfile?.profileImageUrl" alt="Profile Image" class="profile-image">
+          <div *ngIf="imageLoading" class="image-loader">
+            <mat-spinner></mat-spinner>
+          </div>
           <div class="file-input-container">
             <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
             <label for="fileInput" class="file-input-label">Choose File</label>
             <span class="file-name">{{ selectedFile?.name }}</span>
           </div>
-          <button mat-raised-button color="primary" (click)="uploadProfileImage()" [disabled]="!selectedFile">Upload Profile Image</button>
+          <button mat-raised-button color="primary" (click)="uploadProfileImage()" [disabled]="!selectedFile || imageLoading">Upload Profile Image</button>
           <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
         </div>
         <p><strong>Name:</strong> {{ userProfile?.displayName }}</p>

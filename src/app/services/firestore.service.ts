@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, setDoc, updateDoc } from "@angular/fire/firestore";
+import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, orderBy, query, Query, setDoc, updateDoc } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { Game } from "../types/games";
 import { getDownloadURL, ref, Storage, uploadBytes } from "@angular/fire/storage";
@@ -10,10 +10,11 @@ import { getDownloadURL, ref, Storage, uploadBytes } from "@angular/fire/storage
 export class FirestoreService {
   constructor(private firestore: Firestore, private storage: Storage) { }
 
-  // Read all games
+  // Get games sorted by creation date
   getGames(): Observable<Game[]> {
     const gamesCollection = collection(this.firestore, 'Games');
-    return collectionData(gamesCollection, { idField: '_id' }) as Observable<Game[]>;
+    const gamesQuery = query(gamesCollection, orderBy('createdAt', 'desc'));
+    return collectionData(gamesQuery, { idField: '_id' }) as Observable<Game[]>;
   }
 
   // Get game by ID
@@ -31,7 +32,7 @@ export class FirestoreService {
    // Create a new game
    async createGame(game: Game, userId: string): Promise<void> {
     const gamesCollection = collection(this.firestore, 'Games');
-    await addDoc(gamesCollection, { ...game, userId });
+    await addDoc(gamesCollection, { ...game, userId, createdAt: new Date() });
   }
 
   // Update game

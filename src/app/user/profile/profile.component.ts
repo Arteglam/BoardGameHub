@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { MaterialLibraryModule } from '../../material-library/material-library.module';
 import { CommonModule } from '@angular/common';
 import { User } from '@angular/fire/auth';
@@ -12,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink, MaterialLibraryModule, CommonModule, MatDialogModule],
+  imports: [MaterialLibraryModule, CommonModule, MatDialogModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
@@ -24,6 +23,7 @@ export class ProfileComponent implements OnInit {
   loading: boolean = true; 
   selectedFile: File | null = null;
   errorMessage: string | null = null;
+  imageLoading: boolean = false; // Add image loading state
   
   constructor(
     private authService: FireAuthService,
@@ -70,6 +70,7 @@ export class ProfileComponent implements OnInit {
 
   async uploadProfileImage(): Promise<void> {
     if (this.user && this.selectedFile) {
+      this.imageLoading = true; // Show loader
       try {
         const downloadURL = await this.firestoreService.uploadProfileImage(this.user.uid, this.selectedFile);
         await this.firestoreService.updateUserProfile(this.user.uid, { profileImageUrl: downloadURL });
@@ -83,6 +84,8 @@ export class ProfileComponent implements OnInit {
         this.snackBar.open('Error uploading profile image. Please try again.', 'Close', {
           duration: 3000,
         });
+      } finally {
+        this.imageLoading = false; // Hide loader
       }
     }
   }
