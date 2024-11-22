@@ -13,6 +13,7 @@ import { AboutComponent } from './core/about/about.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { AuthGuard } from './guards/auth.guard';
 import { GuestGuard } from './guards/guest.guard';
+import { GalleryComponent } from './games/gallery/gallery.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,11 +22,12 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'catalog', component: GamesCatalogComponent },
-    { path: 'create', component: CreateGameComponent },
-    { path: 'edit/:id', component: EditGameComponent },
+    { path: 'create', component: CreateGameComponent, canActivate: [AuthGuard] },
+    { path: 'edit/:id', component: EditGameComponent, canActivate: [AuthGuard] },
     { path: 'details/:id', component: DetailsComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
+    { path: 'gallery', component: GalleryComponent },
     { path: '**', component: Error404Component }
 ];
 
