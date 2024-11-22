@@ -2,12 +2,13 @@ import { Injectable } from "@angular/core";
 import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, setDoc, updateDoc } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { Game } from "../types/games";
+import { getDownloadURL, ref, Storage, uploadBytes } from "@angular/fire/storage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore, private storage: Storage) { }
 
   // Create a new game
   async createGame(game: Game): Promise<void> {
@@ -56,16 +57,30 @@ export class FirestoreService {
   }
 
   // Get user profile
-  async getUserProfile(userId: string): Promise<{ email: string, displayName: string } | null> {
+  async getUserProfile(userId: string): Promise<{ email: string, displayName: string, profileImageUrl?: string } | null> {
     const userDocRef = doc(this.firestore, `Users/${userId}`);
     const userDocSnap = await getDoc(userDocRef);
     if (userDocSnap.exists()) {
-      return userDocSnap.data() as { email: string, displayName: string };
+      return userDocSnap.data() as { email: string, displayName: string, profileImageUrl?: string };
     } else {
       console.log('No such user profile!');
       return null;
     }
   }
+
+    // Update user profile
+    async updateUserProfile(userId: string, profileData: { displayName?: string, profileImageUrl?: string }): Promise<void> {
+      const userDocRef = doc(this.firestore, `Users/${userId}`);
+      await updateDoc(userDocRef, profileData);
+    }
+  
+    // Upload profile image
+    async uploadProfileImage(userId: string, file: File): Promise<string> {
+      const storageRef = ref(this.storage, `profileImages/${userId}`);
+      await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(storageRef);
+      return downloadURL;
+    }
 
   // Add game to user profile
   async addGameToUserProfile(userId: string, game: Game): Promise<void> {

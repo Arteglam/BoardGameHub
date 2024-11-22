@@ -4,15 +4,25 @@
   </div>
   <div *ngIf="!loading">
     <mat-card class="profile-card">
-      <mat-card-title>My Profile</mat-card-title>
+      <mat-card-title>User Profile</mat-card-title>
       <mat-card-content>
-        <p><strong>UserName:</strong> {{ userProfile?.displayName }}</p>
+        <div class="profile-image-container">
+          <img *ngIf="userProfile?.profileImageUrl" [src]="userProfile?.profileImageUrl" alt="Profile Image" class="profile-image">
+          <div class="file-input-container">
+            <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
+            <label for="fileInput" class="file-input-label">Choose File</label>
+            <span class="file-name">{{ selectedFile?.name }}</span>
+          </div>
+          <button mat-raised-button color="primary" (click)="uploadProfileImage()" [disabled]="!selectedFile">Upload Profile Image</button>
+          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+        </div>
+        <p><strong>Name:</strong> {{ userProfile?.displayName }}</p>
         <p><strong>Email:</strong> {{ userProfile?.email }}</p>
       </mat-card-content>
     </mat-card>
 
     <mat-card class="user-games-card">
-      <mat-card-title>My Games</mat-card-title>
+      <mat-card-title>Your Games</mat-card-title>
       <mat-card-content>
         <div class="games-list">
           <div class="game-item" *ngFor="let game of userGames">
