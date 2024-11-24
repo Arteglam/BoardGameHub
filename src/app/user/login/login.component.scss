@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full viewport height */
+  height: 100%; /* Full viewport height */
   background-color: #f0f4f8; /* Light background color */
   padding: 20px;
 }
@@ -13,9 +13,9 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  width: 100%;
-  max-width: 800px; /* Ensure consistent width */
+  max-width: 800px; /* Set a fixed max-width */
   text-align: center;
+  transition: all 0.3s ease; /* Smooth transition for any changes */
 }
 
 mat-card-title {
@@ -38,6 +38,7 @@ mat-card-content {
   width: 100%;
   background-color: #1e88e5; /* Primary color from azure-blue theme */
   color: #fff;
+  font-size: 16px;
 
   &:hover {
     background-color: darken(#1e88e5, 10%);

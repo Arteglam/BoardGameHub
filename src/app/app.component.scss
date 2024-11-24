@@ -10,4 +10,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.main-content {
+  width: 100%;
+  position: relative;
 }

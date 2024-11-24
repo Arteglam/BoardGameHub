@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./core/header/header.component";
 import { FooterComponent } from "./core/footer/footer.component";
 import { MaterialLibraryModule } from './material-library/material-library.module';
+import { routeTransition } from './animations/route-transition';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,10 @@ import { MaterialLibraryModule } from './material-library/material-library.modul
     MaterialLibraryModule,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  animations: [routeTransition]
 })
 export class AppComponent {
   title = 'BoardGameHub';
+  constructor(protected route: ActivatedRoute) {}
 }
