@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Game } from '../../types/games';
 import { FirestoreService } from '../../services/firestore.service';
 import { RouterLink } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-gallery',
@@ -16,7 +17,10 @@ import { RouterLink } from '@angular/router';
 export class GalleryComponent implements OnInit {
   games: Game[] = [];
   filteredGames: Game[] = [];
+  paginatedGames: Game[] = [];
   searchForm: FormGroup;
+  pageSize = 12;
+  pageIndex = 0;
 
   constructor(
     private firestoreService: FirestoreService,
@@ -38,6 +42,7 @@ export class GalleryComponent implements OnInit {
     this.firestoreService.getGames().subscribe((games: Game[]) => {
       this.games = games;
       this.filteredGames = games;
+      this.paginateGames();
     });
   }
 
@@ -49,5 +54,18 @@ export class GalleryComponent implements OnInit {
         game.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
+    this.paginateGames();
+  }
+
+  paginateGames(): void {
+    const startIndex = this.pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedGames = this.filteredGames.slice(startIndex, endIndex);
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.paginateGames();
   }
 }

@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const materialModules = [
   MatButtonModule,
@@ -25,7 +26,8 @@ const materialModules = [
   MatExpansionModule,
   MatExpansionPanel,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({

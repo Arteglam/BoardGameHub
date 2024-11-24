@@ -2,17 +2,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     background-color: #f0f4f8; /* Light background color */
   }
   
   .search-card {
     width: 100%;
     max-width: 600px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     border-radius: 5px;
-    background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f0f4f8;
   }
   
   mat-card-title {
@@ -59,4 +59,10 @@
     font-weight: bold;
     color: #1e88e5; /* Primary color from azure-blue theme */
     text-align: center;
+  }
+
+  mat-paginator {
+    width: 100%;
+    max-width: 300px; /* Make the paginator container a little smaller */
+    background-color: #f0f4f8; /* Light background color */
   }

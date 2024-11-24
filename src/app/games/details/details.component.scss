@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
   padding: 20px;
   background-color: #f0f4f8; /* Light background color */
 }
@@ -29,7 +30,7 @@ mat-card-content {
 
 .game-image {
   width: 100%;
-  max-width: 100%; /* Ensure the image fits within the container */
+  max-width: 100%; 
   height: auto;
   object-fit: cover;
   margin-top: 10px;

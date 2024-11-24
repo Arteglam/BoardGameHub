@@ -1,22 +1,29 @@
 <div class="gallery-container">
-    <mat-card class="search-card">
-      <mat-card-title>Search Games</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="searchForm">
-          <mat-form-field class="full-width">
-            <mat-label>Search</mat-label>
-            <input matInput formControlName="search" placeholder="Search for a game">
-          </mat-form-field>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  
-    <div class="games-list">
-      <div class="game-card" *ngFor="let game of filteredGames">
-        <mat-card>
-          <img mat-card-image [src]="game.image" alt="{{ game.title }}" class="game-image" [routerLink]="['/details', game._id]">
-          <mat-card-title>{{ game.title }}</mat-card-title>
-        </mat-card>
-      </div>
+  <mat-card class="search-card">
+    <mat-card-title>Search Games</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="searchForm">
+        <mat-form-field class="full-width">
+          <mat-label>Search</mat-label>
+          <input matInput formControlName="search" placeholder="Search for a game">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="games-list">
+    <div class="game-card" *ngFor="let game of paginatedGames">
+      <mat-card>
+        <img mat-card-image [src]="game.image" alt="{{ game.title }}" class="game-image" [routerLink]="['/details', game._id]">
+        <mat-card-title>{{ game.title }}</mat-card-title>
+      </mat-card>
     </div>
   </div>
+
+  <mat-paginator [length]="filteredGames.length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="[12]"
+                 hidePageSize="true" 
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
