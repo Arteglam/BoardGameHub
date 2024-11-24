@@ -1,6 +1,7 @@
 export interface User {
-    _id: string;
+    uid: string;
     displayName: string;
     email: string;
-    password: string;
-}
+    photoURL?: string; 
+    createdAt: { seconds: number; nanoseconds: number };
+  }

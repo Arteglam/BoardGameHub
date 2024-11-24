@@ -1,7 +1,14 @@
-import { animate, query, style, trigger, transition, group } from "@angular/animations";
+import { trigger, transition, style, query, animate, group } from '@angular/animations';
 
 export const routeTransition = trigger('routeTransition', [
-    transition('* => *', [
+    // Exclude the details and profile pages from the animation
+    transition((fromState, toState) => {
+        const isFromExcludedPage =
+            fromState === 'details' || fromState === 'profile';
+        const isToExcludedPage =
+            toState === 'details' || toState === 'profile';
+        return !(isFromExcludedPage || isToExcludedPage);
+    }, [
         query(':enter, :leave', [
             style({ position: 'absolute', width: '100%' })
         ], { optional: true }),

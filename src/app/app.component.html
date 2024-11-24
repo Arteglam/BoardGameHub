@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div [@routeTransition]="o.isActivated ? o.activatedRoute : ''" class="main-content content-container">
+<div [@routeTransition]="o.activatedRouteData['animation']" class="main-content">
   <router-outlet #o="outlet"></router-outlet>
 </div>
 

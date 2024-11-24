@@ -17,18 +17,18 @@ import { GalleryComponent } from './games/gallery/gallery.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent, title: 'Home' },
-    { path: 'register', component: RegisterComponent, title: 'Register', canActivate: [GuestGuard] },
-    { path: 'login', component: LoginComponent, title: 'Login', canActivate: [GuestGuard] },
-    { path: 'profile', component: ProfileComponent, title: 'Profile', canActivate: [AuthGuard] },
-    { path: 'catalog', component: GamesCatalogComponent, title: 'Catalog' },
-    { path: 'create', component: CreateGameComponent, title: 'Create', canActivate: [AuthGuard] },
-    { path: 'edit/:id', component: EditGameComponent, title: 'Edit', canActivate: [AuthGuard] },
-    { path: 'details/:id', component: DetailsComponent, title: 'Details' },
-    { path: 'about', component: AboutComponent, title: 'About' },
-    { path: 'contact', component: ContactComponent, title: 'Contact' },
-    { path: 'gallery', component: GalleryComponent, title: 'Gallery' },
-    { path: '**', component: Error404Component, title: 'Error 404' }
+    { path: 'home', component: HomeComponent, title: 'Home', data: { animation: 'home' } },
+    { path: 'register', component: RegisterComponent, title: 'Register', canActivate: [GuestGuard], data: { animation: 'register' } },
+    { path: 'login', component: LoginComponent, title: 'Login', canActivate: [GuestGuard], data: { animation: 'login' } },
+    { path: 'profile', component: ProfileComponent, title: 'Profile', canActivate: [AuthGuard], data: { animation: 'profile' } },
+    { path: 'catalog', component: GamesCatalogComponent, title: 'Catalog', data: { animation: 'catalog' } },
+    { path: 'create', component: CreateGameComponent, title: 'Create', canActivate: [AuthGuard], data: { animation: 'create' } },
+    { path: 'edit/:id', component: EditGameComponent, title: 'Edit', canActivate: [AuthGuard], data: { animation: 'edit' } },
+    { path: 'details/:id', component: DetailsComponent, title: 'Details', data: { animation: 'details' } },
+    { path: 'about', component: AboutComponent, title: 'About', data: { animation: 'about' } },
+    { path: 'contact', component: ContactComponent, title: 'Contact', data: { animation: 'contact' } },
+    { path: 'gallery', component: GalleryComponent, title: 'Gallery', data: { animation: 'gallery' } },
+    { path: '**', component: Error404Component, title: 'Error 404', data: { animation: 'error404' } }
 ];
 
 @NgModule({

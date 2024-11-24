@@ -10,5 +10,5 @@ export interface Game {
     description: string;
     image: string;
     userId: string;
-    createdAt: { seconds: number };
+    createdAt: { seconds: number; nanoseconds: number };
 }
