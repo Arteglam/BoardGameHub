@@ -6,6 +6,7 @@ import { FirestoreService } from '../../services/firestore.service';
 import { CommonModule } from '@angular/common';
 import { FireAuthService } from '../../services/fireauth.service';
 import { User } from '@angular/fire/auth';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-games-catalog',
@@ -16,10 +17,14 @@ import { User } from '@angular/fire/auth';
 })
 export class GamesCatalogComponent implements OnInit {
   games: Game[] = [];
+  filteredGames: Game[] = [];
+  paginatedGames: Game[] = [];
   user: User | null = null;
   userGameIds: Set<string> = new Set();
   loading: boolean = true;
   sortCriteria: string = 'createdAt'; // Default sorting criteria
+  pageSize = 12;
+  pageIndex = 0;
 
   constructor(
     private firestoreService: FirestoreService,
@@ -39,8 +44,10 @@ export class GamesCatalogComponent implements OnInit {
   loadGames(): void {
     this.firestoreService.getGames().subscribe((games: Game[]) => {
       this.games = games;
+      this.filteredGames = games;
       this.sortGames();
-      this.loading = false;
+      this.paginateGames();
+      this.loading = false; // Set loading to false when games are loaded
     });
   }
 
@@ -64,6 +71,7 @@ export class GamesCatalogComponent implements OnInit {
   onSortCriteriaChange(criteria: string): void {
     this.sortCriteria = criteria;
     this.sortGames();
+    this.paginateGames();
   }
 
   sortGames(): void {
@@ -74,6 +82,18 @@ export class GamesCatalogComponent implements OnInit {
     } else {
       this.games.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
     }
+  }
+
+  paginateGames(): void {
+    const startIndex = this.pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedGames = this.filteredGames.slice(startIndex, endIndex);
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.paginateGames();
   }
 
   trackById(index: number, game: Game): string {

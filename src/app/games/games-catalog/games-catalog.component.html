@@ -3,8 +3,16 @@
     <mat-spinner class="loader"></mat-spinner>
   </div>
   <div *ngIf="!loading" class="games-list">
-    <div class="game-card" *ngFor="let game of games; trackBy: trackById">
-      <img mat-card-image [src]="game.image" alt="{{ game.title }}" class="game-image" />
+    <div
+      class="game-card"
+      *ngFor="let game of paginatedGames; trackBy: trackById"
+    >
+      <img
+        mat-card-image
+        [src]="game.image"
+        alt="{{ game.title }}"
+        class="game-image"
+      />
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -22,8 +30,22 @@
             <p>{{ game.description }}</p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="primary" [routerLink]="['/details', game._id]">Details</button>
-            <button mat-raised-button color="accent" (click)="addGameToProfile(game)" [disabled]="isGameInUserProfile(game._id)" *ngIf="user">Add to Profile</button>
+            <button
+              mat-raised-button
+              color="primary"
+              [routerLink]="['/details', game._id]"
+            >
+              Details
+            </button>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="addGameToProfile(game)"
+              [disabled]="isGameInUserProfile(game._id)"
+              *ngIf="user"
+            >
+              Add to Profile
+            </button>
           </mat-card-actions>
         </ng-template>
       </mat-expansion-panel>
@@ -31,10 +53,22 @@
   </div>
   <mat-form-field appearance="fill" class="sort-dropdown">
     <mat-label>Sort by</mat-label>
-    <mat-select [(value)]="sortCriteria" (selectionChange)="onSortCriteriaChange($event.value)">
+    <mat-select
+      [(value)]="sortCriteria"
+      (selectionChange)="onSortCriteriaChange($event.value)"
+    >
       <mat-option value="createdAt">Newest</mat-option>
       <mat-option value="rating">Rating</mat-option>
       <mat-option value="year">Year</mat-option>
     </mat-select>
   </mat-form-field>
+
+  <mat-paginator
+    [length]="filteredGames.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[12]"
+    hidePageSize="true"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
 </div>
