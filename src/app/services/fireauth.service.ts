@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, User, UserCredential } from "@angular/fire/auth";
+import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, User, UserCredential, updateProfile } from "@angular/fire/auth";
 import { doc, Firestore, getDoc, setDoc } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 
@@ -30,6 +30,8 @@ export class FireAuthService {
     const cred = await createUserWithEmailAndPassword(this.auth, email, password);
     if (cred.user) {
       this.user = cred.user;
+      // Update the user's profile with the display name
+      await updateProfile(cred.user, { displayName });
       // Create user document in Firestore
       const userDocRef = doc(this.firestore, `Users/${cred.user.uid}`);
       await setDoc(userDocRef, { email, displayName });

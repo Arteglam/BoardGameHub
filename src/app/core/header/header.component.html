@@ -29,7 +29,7 @@
           </a>
           <a mat-button routerLink="/profile">
             <mat-icon>account_circle</mat-icon>
-            My Profile
+            {{ user.displayName }} Profile
           </a>
           <button mat-button (click)="signOut()">
             <mat-icon>logout</mat-icon>
