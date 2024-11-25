@@ -17,7 +17,7 @@ import { GalleryComponent } from './games/gallery/gallery.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent, title: 'Home', data: { animation: 'home' } },
+    { path: 'home', component: HomeComponent, title: 'Board Game Hub', data: { animation: 'home' } },
     { path: 'register', component: RegisterComponent, title: 'Register', canActivate: [GuestGuard], data: { animation: 'register' } },
     { path: 'login', component: LoginComponent, title: 'Login', canActivate: [GuestGuard], data: { animation: 'login' } },
     { path: 'profile', component: ProfileComponent, title: 'Profile', canActivate: [AuthGuard], data: { animation: 'profile' } },

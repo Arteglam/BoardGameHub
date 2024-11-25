@@ -6,13 +6,15 @@ import { Game } from '../../types/games';
 import { FirestoreService } from '../../services/firestore.service';
 import { RouterLink } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
+import { popUp } from '../../animations/popUp';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
   imports: [MaterialLibraryModule, CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './gallery.component.html',
-  styleUrl: './gallery.component.scss'
+  styleUrl: './gallery.component.scss',
+  animations: [popUp]
 })
 export class GalleryComponent implements OnInit {
   games: Game[] = [];
@@ -21,6 +23,7 @@ export class GalleryComponent implements OnInit {
   searchForm: FormGroup;
   pageSize = 12;
   pageIndex = 0;
+  hoverStates: { [key: string]: string } = {}; 
 
   constructor(
     private firestoreService: FirestoreService,
@@ -68,4 +71,13 @@ export class GalleryComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.paginateGames();
   }
+
+  onMouseEnter(gameId: string): void {
+    this.hoverStates[gameId] = 'hover';
+  }
+
+  onMouseLeave(gameId: string): void {
+    this.hoverStates[gameId] = 'rest';
+  }
+
 }

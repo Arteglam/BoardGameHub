@@ -5,8 +5,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 This project is build for the SoftUni Angular Course Regular Exam on December 2024.
 
 ## About the project
-The idea of the project is to be a board game enthusiasts hub. This is a web app where you can browse board games, create them, rate them, add them to your personal collection and comment something about them.
-The users have personal profile pages where then can store their favorite games. They can add, edit, delete the games they have in their personal collection in the profile.
+The idea of the project is to be a board game enthusiasts hub. This is a web app where you can browse board games, create them, add them to your personal collection and comment something about them.
+The users have personal profile pages where then can store their favorite games. They can edit and delete the games they created.
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

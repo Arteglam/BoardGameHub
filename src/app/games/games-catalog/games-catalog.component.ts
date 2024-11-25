@@ -22,7 +22,7 @@ export class GamesCatalogComponent implements OnInit {
   user: User | null = null;
   userGameIds: Set<string> = new Set();
   loading: boolean = true;
-  sortCriteria: string = 'createdAt'; // Default sorting criteria
+  sortCriteria: string = 'createdAt'; 
   pageSize = 12;
   pageIndex = 0;
 
@@ -101,5 +101,6 @@ export class GamesCatalogComponent implements OnInit {
     return game._id;
 
   }
+
 }
 
