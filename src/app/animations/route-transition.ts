@@ -3,11 +3,9 @@ import { trigger, transition, style, query, animate, group } from '@angular/anim
 export const routeTransition = trigger('routeTransition', [
     // Exclude the details and profile pages from the animation
     transition((fromState, toState) => {
-        const isFromExcludedPage =
-            fromState === 'details' || fromState === 'profile';
         const isToExcludedPage =
             toState === 'details' || toState === 'profile';
-        return !(isFromExcludedPage || isToExcludedPage);
+        return !(isToExcludedPage);
     }, [
         query(':enter, :leave', [
             style({ position: 'absolute', width: '100%' })

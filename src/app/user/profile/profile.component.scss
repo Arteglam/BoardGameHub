@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 20px;
-  background-color: #f0f4f8; /* Light background color */
-  position: relative; /* Ensure the loader is positioned correctly */
+  background-color: #f0f4f8; 
+  position: relative; 
 }
 
 .loader-container {
@@ -12,12 +12,12 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh; /* Full viewport height */
-  position: fixed; /* Fix the loader to the viewport */
+  height: 100vh; 
+  position: fixed; 
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-  z-index: 10; /* Ensure the loader is on top */
+  background-color: rgba(255, 255, 255, 0.8); 
+  z-index: 10; 
 }
 
 .loader {
@@ -53,7 +53,7 @@
 mat-card-title {
   font-size: 24px;
   font-weight: bold;
-  color: #1e88e5; /* Primary color from azure-blue theme */
+  color: #1e88e5; 
   text-align: center;
 }
 
@@ -62,7 +62,7 @@ mat-card-title {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
-  position: relative; /* Ensure the loader is positioned correctly */
+  position: relative; 
 }
 
 .profile-image {
@@ -87,13 +87,13 @@ mat-card-title {
 }
 
 .file-input-label {
-  background-color: #1e88e5; /* Primary color from azure-blue theme */
+  background-color: #1e88e5;
   color: #fff;
-  padding: 5px 10px; /* Reduced padding */
+  padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
   margin-right: 10px;
-  font-size: 14px; /* Adjust font size if needed */
+  font-size: 14px; 
 }
 
 .file-input-label:hover {
@@ -102,7 +102,7 @@ mat-card-title {
 
 .file-name {
   font-size: 14px;
-  color: #333; /* Dark text color */
+  color: #333; 
 }
 
 .error-message {
@@ -154,9 +154,9 @@ mat-card-title {
 .dialog-actions {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0; /* Add padding for spacing */
+  padding: 10px 0; 
 }
 
 .dialog-actions button {
-  margin: 0 10px; /* Add margin for spacing between buttons */
+  margin: 0 10px; 
 }

@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* Full viewport height */
-  background-color: #f0f4f8; /* Light background color */
+  height: 100%; 
+  background-color: #f0f4f8; 
   padding: 20px;
 }
 
@@ -13,20 +13,20 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  max-width: 800px; /* Set a fixed max-width */
+  max-width: 800px; 
   text-align: center;
-  transition: all 0.3s ease; /* Smooth transition for any changes */
+  transition: all 0.3s ease;
 }
 
 mat-card-title {
   font-size: 24px;
   font-weight: bold;
-  color: #1e88e5; /* Primary color from azure-blue theme */
+  color: #1e88e5; 
 }
 
 mat-card-content {
   font-size: 16px;
-  color: #333; /* Dark text color */
+  color: #333; 
 }
 
 .full-width {
@@ -36,7 +36,7 @@ mat-card-content {
 
 .login-button {
   width: 100%;
-  background-color: #1e88e5; /* Primary color from azure-blue theme */
+  background-color: #1e88e5; 
   color: #fff;
   font-size: 16px;
 

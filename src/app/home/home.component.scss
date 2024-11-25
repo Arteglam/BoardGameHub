@@ -4,8 +4,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%; /* Full height of the content container */
-  background-color: #f0f4f8; /* Light background color */
+  height: 100%; 
+  background-color: #f0f4f8; 
   padding: 20px;
 }
 
@@ -22,13 +22,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 100%;
-  max-width: 800px; /* Ensure consistent width */
+  max-width: 800px; 
   text-align: center;
 }
 
 .home-card img {
   display: block;
-  margin: 0 auto; /* Center the image horizontally */
+  margin: 0 auto;
   max-width: 100%;
   height: auto;
   width: 75%;
@@ -40,7 +40,7 @@
   margin-top: 20px;
 
   a {
-    color: #1e88e5; /* Primary color from azure-blue theme */
+    color: #1e88e5;
     text-decoration: none;
 
     &:hover {
@@ -65,14 +65,14 @@ mat-card-title {
 
 .card-title-text {
   font-size: 1.3em;
-  color: #1e88e5; /* Primary color from azure-blue theme */
+  color: #1e88e5;
   text-align: center;
   display: block;
 }
 
 mat-card-content {
   font-size: 1em;
-  color: #333; /* Dark text color */
+  color: #333; 
 }
 
 mat-card-actions {

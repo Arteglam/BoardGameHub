@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #f0f4f8; /* Light background color */
+  background-color: #f0f4f8;
 }
 
 .edit-card {
@@ -12,7 +12,7 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  width: 600px; /* Ensure consistent width */
+  width: 600px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,7 +21,7 @@
 mat-card-title {
   font-size: 24px;
   font-weight: bold;
-  color: #1e88e5; /* Primary color from azure-blue theme */
+  color: #1e88e5;
   text-align: center;
 }
 
