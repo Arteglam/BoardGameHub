@@ -29,15 +29,15 @@ export class CreateGameComponent {
     private snackBar: MatSnackBar
   ) {
     this.gameForm = this.fb.group({
-      title: ['', Validators.required],
-      year: ['', [Validators.required, Validators.min(1900), Validators.max(new Date().getFullYear())]],
-      designer: ['', Validators.required],
-      artist: ['', Validators.required],
-      publisher: ['', Validators.required],
-      rating: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
-      category: ['', Validators.required],
-      description: ['', Validators.required],
-      image: ['', Validators.required]
+      title: ['', [Validators.required, Validators.maxLength(50)]],
+      year: ['', [Validators.required, Validators.min(1975)]],
+      designer: ['', [Validators.required, Validators.maxLength(50)]],
+      artist: ['', [Validators.required, Validators.maxLength(50)]],
+      publisher: ['', [Validators.required, Validators.maxLength(50)]],
+      rating: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
+      category: ['', [Validators.required, Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.maxLength(100)]],
+      image: ['', Validators.required,]
     });
 
     this.authService.getUser().subscribe(user => {

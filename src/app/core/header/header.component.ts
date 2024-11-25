@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUser().subscribe(user => {
       this.user = user;
-      console.log('User:', this.user); // Debugging: Check if user object is populated
     });
   }
 

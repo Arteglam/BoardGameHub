@@ -24,7 +24,7 @@ export class RegisterComponent {
     private snackBar: MatSnackBar
   ) {
     this.registerForm = this.fb.group({
-      displayName: ['', Validators.required],
+      displayName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -32,8 +32,9 @@ export class RegisterComponent {
   }
 
   passwordMatchValidator(form: FormGroup) {
-    return form.get('password')?.value === form.get('confirmPassword')?.value
-      ? null : { mismatch: true };
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
   }
 
   async onSubmit() {
@@ -52,7 +53,11 @@ export class RegisterComponent {
         });
       }
     } else {
-      this.errorMessage = 'Please fill out all required fields correctly.';
+      if (this.registerForm.errors?.['mismatch']) {
+        this.snackBar.open('Passwords do not match. Please try again.', 'Close', {
+          duration: 3000,
+        });
+      }
     }
   }
 }
