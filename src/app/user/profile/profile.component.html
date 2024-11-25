@@ -4,13 +4,21 @@
   </div>
   <div *ngIf="!loading" class="content-container">
     <mat-card class="user-games-card">
-      <mat-card-title>Your Games</mat-card-title>
+      <mat-card-title> <mat-icon>games</mat-icon> Your Games</mat-card-title>
       <mat-card-content>
         <div class="games-list">
           <div class="game-item" *ngFor="let game of userGames">
             <div class="game-image-container">
-              <img [src]="game.image" alt="{{ game.title }}" class="game-image" />
-              <button mat-icon-button class="remove-button" (click)="confirmRemoveGame(game)">
+              <img
+                [src]="game.image"
+                alt="{{ game.title }}"
+                class="game-image"
+              />
+              <button
+                mat-icon-button
+                class="remove-button"
+                (click)="confirmRemoveGame(game)"
+              >
                 <mat-icon>close</mat-icon>
               </button>
             </div>
@@ -21,23 +29,52 @@
     </mat-card>
 
     <mat-card class="profile-card">
-      <mat-card-title>User Profile</mat-card-title>
+      <mat-card-title>
+        <mat-icon>account_circle</mat-icon> User Profile</mat-card-title
+      >
       <mat-card-content>
         <div class="profile-image-container">
-          <img *ngIf="userProfile?.profileImageUrl && !imageLoading" [src]="userProfile?.profileImageUrl" alt="Profile Image" class="profile-image">
+          <img
+            *ngIf="userProfile?.profileImageUrl && !imageLoading"
+            [src]="userProfile?.profileImageUrl"
+            alt="Profile Image"
+            class="profile-image"
+          />
           <div *ngIf="imageLoading" class="image-loader">
             <mat-spinner></mat-spinner>
           </div>
           <div class="file-input-container">
-            <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
-            <label for="fileInput" class="file-input-label">Choose File</label>
+            <input
+              type="file"
+              id="fileInput"
+              (change)="onFileSelected($event)"
+              hidden
+            />
+            <label for="fileInput" class="file-input-label">
+              <mat-icon>attach_file</mat-icon> Choose File</label
+            >
             <span class="file-name">{{ selectedFile?.name }}</span>
           </div>
-          <button mat-raised-button color="primary" (click)="uploadProfileImage()" [disabled]="!selectedFile || imageLoading">Upload Profile Image</button>
-          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="uploadProfileImage()"
+            [disabled]="!selectedFile || imageLoading"
+          >
+            <mat-icon>cloud_upload</mat-icon> Upload Profile Image
+          </button>
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
         </div>
-        <p><strong>Name:</strong> {{ userProfile?.displayName }}</p>
-        <p><strong>Email:</strong> {{ userProfile?.email }}</p>
+        <p>
+          <mat-icon>person</mat-icon> <strong>Name:</strong>
+          {{ userProfile?.displayName }}
+        </p>
+        <p>
+          <mat-icon>email</mat-icon> <strong>Email:</strong>
+          {{ userProfile?.email }}
+        </p>
       </mat-card-content>
     </mat-card>
   </div>

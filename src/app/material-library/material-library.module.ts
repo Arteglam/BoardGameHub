@@ -28,7 +28,6 @@ const materialModules = [
   MatSelectModule,
   MatOptionModule,
   MatPaginatorModule,
-  MatIconModule
 ];
 
 @NgModule({
