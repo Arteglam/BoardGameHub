@@ -2,13 +2,13 @@
   <mat-card class="details-card">
     <mat-card-title>{{ game.title }}</mat-card-title>
     <mat-card-content>
-      <p><strong>Year:</strong> {{ game.year }}</p>
-      <p><strong>Designer:</strong> {{ game.designer }}</p>
-      <p><strong>Artist:</strong> {{ game.artist }}</p>
-      <p><strong>Publisher:</strong> {{ game.publisher }}</p>
-      <p><strong>Rating:</strong> {{ game.rating }}</p>
-      <p><strong>Category:</strong> {{ game.category }}</p>
-      <p>{{ game.description }}</p>
+      <p><mat-icon>calendar_today</mat-icon><strong>Year:</strong> {{ game.year }}</p>
+      <p><mat-icon>person</mat-icon><strong>Designer:</strong> {{ game.designer }}</p>
+      <p><mat-icon>brush</mat-icon><strong>Artist:</strong> {{ game.artist }}</p>
+      <p><mat-icon>business</mat-icon><strong>Publisher:</strong> {{ game.publisher }}</p>
+      <p><mat-icon>star</mat-icon><strong>Rating:</strong> {{ game.rating }}</p>
+      <p><mat-icon>category</mat-icon><strong>Category:</strong> {{ game.category }}</p>
+      <p><mat-icon>description</mat-icon>{{ game.description }}</p>
       <img [src]="game.image" alt="{{ game.title }}" class="game-image" />
     </mat-card-content>
     <mat-card-actions>
