@@ -9,11 +9,27 @@
       <p><strong>Rating:</strong> {{ game.rating }}</p>
       <p><strong>Category:</strong> {{ game.category }}</p>
       <p>{{ game.description }}</p>
-      <img [src]="game.image" alt="{{ game.title }}" class="game-image">
+      <img [src]="game.image" alt="{{ game.title }}" class="game-image" />
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="editGame()" *ngIf="isCreator()">Edit</button>
-      <button mat-raised-button color="warn" (click)="deleteGame()" *ngIf="isCreator()">Delete</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="editGame()"
+        *ngIf="isCreator()"
+      >
+        <mat-icon>edit</mat-icon>
+        Edit
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="deleteGame()"
+        *ngIf="isCreator()"
+      >
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

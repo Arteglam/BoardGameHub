@@ -9,18 +9,42 @@
       <h1 class="header-title">Board Game Hub</h1>
       <nav class="header-nav">
         <!-- Logic for guests -->
-        <a mat-button routerLink="/home">Home</a>
-        <a mat-button routerLink="/catalog">Catalog</a>
-        <a mat-button routerLink="/gallery">Gallery</a>
+        <a mat-button routerLink="/home">
+          <mat-icon>home</mat-icon>
+          Home
+        </a>
+        <a mat-button routerLink="/catalog">
+          <mat-icon>view_list</mat-icon>
+          Catalog
+        </a>
+        <a mat-button routerLink="/gallery">
+          <mat-icon>photo_library</mat-icon>
+          Gallery
+        </a>
         <!-- Logic for registered users -->
         <ng-container *ngIf="user; else guestLinks">
-          <a mat-button routerLink="/create">Create Game</a>
-          <a mat-button routerLink="/profile">My Profile</a>
-          <button mat-button (click)="signOut()">Logout</button>
+          <a mat-button routerLink="/create">
+            <mat-icon>add_circle</mat-icon>
+            Create Game
+          </a>
+          <a mat-button routerLink="/profile">
+            <mat-icon>account_circle</mat-icon>
+            My Profile
+          </a>
+          <button mat-button (click)="signOut()">
+            <mat-icon>logout</mat-icon>
+            Logout
+          </button>
         </ng-container>
         <ng-template #guestLinks>
-          <a mat-button routerLink="/register">Register</a>
-          <a mat-button routerLink="/login">Login</a>
+          <a mat-button routerLink="/register">
+            <mat-icon>person_add</mat-icon>
+            Register
+          </a>
+          <a mat-button routerLink="/login">
+            <mat-icon>login</mat-icon>
+            Login
+          </a>
         </ng-template>
       </nav>
     </div>

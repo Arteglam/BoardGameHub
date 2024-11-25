@@ -25,13 +25,14 @@
 
 .header-nav {
   display: flex;
-  gap: 15px;
 }
 
 .header-nav a {
   color: #fff;
   text-decoration: none;
-  font-size: large;
+  font-size: medium;
+  display: flex;
+  align-items: center;
 
   &:hover {
     text-decoration: underline;
@@ -50,11 +51,18 @@ nav a, nav button {
   color: #fff;
   text-decoration: none;
   margin: 0 10px;
-  font-size: large;
+  font-size: medium;
+  display: flex;
+  align-items: center;
 
   &:hover {
+    background-color: darken(#1e88e5, 5%);
     text-decoration: underline;
   }
+}
+
+mat-icon {
+  margin-right: 5px;
 }
 
 .spacer {

@@ -35,6 +35,7 @@
               color="primary"
               [routerLink]="['/details', game._id]"
             >
+              <mat-icon>info</mat-icon>
               Details
             </button>
             <button
@@ -44,7 +45,8 @@
               [disabled]="isGameInUserProfile(game._id)"
               *ngIf="user"
             >
-              Add to Profile
+            <mat-icon>add</mat-icon>
+              Add Game
             </button>
           </mat-card-actions>
         </ng-template>
