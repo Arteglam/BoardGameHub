@@ -29,13 +29,13 @@ export class CreateGameComponent {
     private snackBar: MatSnackBar
   ) {
     this.gameForm = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(50)]],
+      title: ['', [Validators.required, Validators.maxLength(70)]],
       year: ['', [Validators.required, Validators.min(1975)]],
-      designer: ['', [Validators.required, Validators.maxLength(50)]],
-      artist: ['', [Validators.required, Validators.maxLength(50)]],
-      publisher: ['', [Validators.required, Validators.maxLength(50)]],
+      designer: ['', [Validators.required, Validators.maxLength(70)]],
+      artist: ['', [Validators.required, Validators.maxLength(70)]],
+      publisher: ['', [Validators.required, Validators.maxLength(70)]],
       rating: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
-      category: ['', [Validators.required, Validators.maxLength(50)]],
+      category: ['', [Validators.required, Validators.maxLength(70)]],
       description: ['', [Validators.required, Validators.maxLength(100)]],
       image: ['', Validators.required,]
     });

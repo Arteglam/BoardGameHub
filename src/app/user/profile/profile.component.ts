@@ -7,6 +7,7 @@ import { FireAuthService } from '../../services/fireauth.service';
 import { FirestoreService } from '../../services/firestore.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -23,13 +24,14 @@ export class ProfileComponent implements OnInit {
   loading: boolean = true; 
   selectedFile: File | null = null;
   errorMessage: string | null = null;
-  imageLoading: boolean = false; // Add image loading state
+  imageLoading: boolean = false; 
   
   constructor(
     private authService: FireAuthService,
     private firestoreService: FirestoreService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -70,12 +72,12 @@ export class ProfileComponent implements OnInit {
 
   async uploadProfileImage(): Promise<void> {
     if (this.user && this.selectedFile) {
-      this.imageLoading = true; // Show loader
+      this.imageLoading = true; 
       try {
         const downloadURL = await this.firestoreService.uploadProfileImage(this.user.uid, this.selectedFile);
         await this.firestoreService.updateUserProfile(this.user.uid, { profileImageUrl: downloadURL });
-        this.userProfile = await this.firestoreService.getUserProfile(this.user.uid); // Refresh profile data
-        this.selectedFile = null; // Clear the selected file
+        this.userProfile = await this.firestoreService.getUserProfile(this.user.uid); 
+        this.selectedFile = null; 
         this.snackBar.open('Profile image uploaded successfully!', 'Close', {
           duration: 3000,
         });
@@ -85,7 +87,7 @@ export class ProfileComponent implements OnInit {
           duration: 3000,
         });
       } finally {
-        this.imageLoading = false; // Hide loader
+        this.imageLoading = false; 
       }
     }
   }
@@ -108,6 +110,11 @@ export class ProfileComponent implements OnInit {
       this.gameToRemove = null;
     }
   }
+
+  goToDetails(gameId: string): void {
+    this.router.navigate(['/details', gameId]);
+  }
+
 }
 
 // Confirm removal dialog

@@ -7,7 +7,7 @@
           <mat-label>Title</mat-label>
           <input matInput formControlName="title">
           <mat-error *ngIf="gameForm.get('title')?.hasError('required')">Title is required</mat-error>
-          <mat-error *ngIf="gameForm.get('title')?.hasError('maxlength')">Title can't be more then 50 characters</mat-error>
+          <mat-error *ngIf="gameForm.get('title')?.hasError('maxlength')">Title too long</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
@@ -21,21 +21,21 @@
           <mat-label>Designer</mat-label>
           <input matInput formControlName="designer">
           <mat-error *ngIf="gameForm.get('designer')?.hasError('required')">Designer is required</mat-error>
-          <mat-error *ngIf="gameForm.get('designer')?.hasError('maxlength')">Designer can't be more then 50 characters</mat-error>
+          <mat-error *ngIf="gameForm.get('designer')?.hasError('maxlength')">Designer too long</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Artist</mat-label>
           <input matInput formControlName="artist">
           <mat-error *ngIf="gameForm.get('artist')?.hasError('required')">Artist is required</mat-error>
-          <mat-error *ngIf="gameForm.get('artist')?.hasError('maxlength')">Artist can't be more then 50 characters</mat-error>
+          <mat-error *ngIf="gameForm.get('artist')?.hasError('maxlength')">Artist too long</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Publisher</mat-label>
           <input matInput formControlName="publisher">
           <mat-error *ngIf="gameForm.get('publisher')?.hasError('required')">Publisher is required</mat-error>
-          <mat-error *ngIf="gameForm.get('publisher')?.hasError('maxlength')">Publisher can't be more then 50 characters</mat-error>
+          <mat-error *ngIf="gameForm.get('publisher')?.hasError('maxlength')">Publisher too long</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
@@ -50,14 +50,14 @@
           <mat-label>Category</mat-label>
           <input matInput formControlName="category">
           <mat-error *ngIf="gameForm.get('category')?.hasError('required')">Category is required</mat-error>
-          <mat-error *ngIf="gameForm.get('category')?.hasError('maxlength')">Category can't be more then 50 characters</mat-error>
+          <mat-error *ngIf="gameForm.get('category')?.hasError('maxlength')">Category too long</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Description</mat-label>
           <input matInput formControlName="description">
           <mat-error *ngIf="gameForm.get('description')?.hasError('required')">Description is required</mat-error>
-          <mat-error *ngIf="gameForm.get('description')?.hasError('maxlength')">Description can't be more then 100 characters</mat-error>
+          <mat-error *ngIf="gameForm.get('description')?.hasError('maxlength')">Description too long</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
