@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
     firebase: {
-        apiKey: "AIzaSyADrNzHBpwOWXGL1O4rHCgO2kykeCERwDg",
+        apiKey: "",
         authDomain: "boardgamehub-4a607.firebaseapp.com",
         projectId: "boardgamehub-4a607",
         storageBucket: "boardgamehub-4a607.firebasestorage.app",
