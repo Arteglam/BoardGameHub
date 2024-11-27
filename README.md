@@ -21,5 +21,5 @@ The project uses Firebase Backend and Database for users, boardgames and contact
 
 The project uses Angular material library.
 
-You will need the apiKey to access the Firebase functionality.
+You will need the apiKey in the environment.ts file to access the Firebase functionality.
 ## 
