@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/board-game-hub",
+    "public": "dist/board-game-hub/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
