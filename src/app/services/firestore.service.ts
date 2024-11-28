@@ -29,8 +29,8 @@ export class FirestoreService {
     }
   }
 
-   // Create a new game
-   async createGame(game: Game, userId: string): Promise<void> {
+  // Create a new game
+  async createGame(game: Game, userId: string): Promise<void> {
     const gamesCollection = collection(this.firestore, 'Games');
     await addDoc(gamesCollection, { ...game, userId, createdAt: Timestamp.now() });
   }
@@ -65,19 +65,19 @@ export class FirestoreService {
     }
   }
 
-    // Update user profile
-    async updateUserProfile(userId: string, profileData: { displayName?: string, profileImageUrl?: string }): Promise<void> {
-      const userDocRef = doc(this.firestore, `Users/${userId}`);
-      await updateDoc(userDocRef, profileData);
-    }
-  
-    // Upload profile image
-    async uploadProfileImage(userId: string, file: File): Promise<string> {
-      const storageRef = ref(this.storage, `profileImages/${userId}`);
-      await uploadBytes(storageRef, file);
-      const downloadURL = await getDownloadURL(storageRef);
-      return downloadURL;
-    }
+  // Update user profile
+  async updateUserProfile(userId: string, profileData: { displayName?: string, profileImageUrl?: string }): Promise<void> {
+    const userDocRef = doc(this.firestore, `Users/${userId}`);
+    await updateDoc(userDocRef, profileData);
+  }
+
+  // Upload profile image
+  async uploadProfileImage(userId: string, file: File): Promise<string> {
+    const storageRef = ref(this.storage, `profileImages/${userId}`);
+    await uploadBytes(storageRef, file);
+    const downloadURL = await getDownloadURL(storageRef);
+    return downloadURL;
+  }
 
   // Add game to user profile
   async addGameToUserProfile(userId: string, game: Game): Promise<void> {
@@ -104,8 +104,8 @@ export class FirestoreService {
     return gameDocSnap.exists();
   }
 
-   // Save contact form submission
-   async saveContactForm(contactData: { name: string, email: string, message: string }): Promise<void> {
+  // Save contact form submission
+  async saveContactForm(contactData: { name: string, email: string, message: string }): Promise<void> {
     const contactCollection = collection(this.firestore, 'ContactForms');
     await addDoc(contactCollection, contactData);
   }
