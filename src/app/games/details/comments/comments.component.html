@@ -1,4 +1,7 @@
 <div class="comments-container">
+  <div>
+   <h5>Comments</h5> 
+  </div>
   <div class="comments-list">
     <div *ngFor="let comment of paginatedComments" class="comment-item">
       <p><strong>{{ comment.userName }}</strong> ({{ comment.createdAt | date:'short' }}):</p>
