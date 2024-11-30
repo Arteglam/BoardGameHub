@@ -2,9 +2,16 @@
   <div class="comments-list">
     <div *ngFor="let comment of comments" class="comment-item">
       <p><strong>{{ comment.userName }}</strong> ({{ comment.createdAt | date:'short' }}):</p>
-      <p class="comment-text">{{ comment.text }}</p>
-      <button *ngIf="comment.userId === user?.uid" mat-button (click)="deleteComment(comment.id)">Delete</button>
-      <button *ngIf="comment.userId === user?.uid" mat-button (click)="updateComment(comment.id, 'New text')">Edit</button>
+      <div *ngIf="editingComment?.id === comment.id">
+        <textarea [(ngModel)]="editText" class="edit-textarea"></textarea>
+        <button mat-button (click)="updateComment()">Save</button>
+        <button mat-button (click)="cancelEdit()">Cancel</button>
+      </div>
+      <div *ngIf="editingComment?.id !== comment.id">
+        <p class="comment-text">{{ comment.text }}</p>
+        <button *ngIf="comment.userId === user?.uid" mat-button (click)="deleteComment(comment.id)">Delete</button>
+        <button *ngIf="comment.userId === user?.uid" mat-button (click)="editComment(comment)">Edit</button>
+      </div>
     </div>
   </div>
 </div>

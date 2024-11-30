@@ -6,11 +6,12 @@ import { MaterialLibraryModule } from '../../../material-library/material-librar
 import { Comment } from '../../../types/comment';
 import { Timestamp } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-comments',
   standalone: true,
-  imports: [MaterialLibraryModule, CommonModule],
+  imports: [MaterialLibraryModule, CommonModule, FormsModule],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.scss'
 })
@@ -19,6 +20,7 @@ export class CommentsComponent implements OnInit {
   comments: Comment[] = [];
   user: User | null = null;
   editingComment: Comment | null = null;
+  editText: string = '';
 
   constructor(
     private firestoreService: FirestoreService,
@@ -48,13 +50,25 @@ export class CommentsComponent implements OnInit {
     }
   }
 
-  async updateComment(commentId: string, newText: string): Promise<void> {
-    if (this.user) {
-      await this.firestoreService.updateComment(this.gameId, commentId, newText);
-      const comment = this.comments.find(comment => comment.id === commentId);
+  editComment(comment: Comment): void {
+    this.editingComment = comment; 
+    this.editText = comment.text; 
+  }
+
+  async updateComment(): Promise<void> {
+    if (this.user && this.editingComment) {
+      await this.firestoreService.updateComment(this.gameId, this.editingComment.id, this.editText);
+      const comment = this.comments.find(comment => comment.id === this.editingComment!.id);
       if (comment) {
-        comment.text = newText;
+        comment.text = this.editText;
       }
+      this.editingComment = null;
+      this.editText = ''; 
     }
+  }
+
+  cancelEdit(): void {
+    this.editingComment = null; 
+    this.editText = ''; 
   }
 }
