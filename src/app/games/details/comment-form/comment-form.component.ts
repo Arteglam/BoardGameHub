@@ -6,19 +6,20 @@ import { FireAuthService } from '../../../services/fireauth.service';
 import { CommonModule } from '@angular/common';
 import { MaterialLibraryModule } from '../../../material-library/material-library.module';
 import { Comment } from '../../../types/comment';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-comment-form',
   standalone: true,
-  imports: [CommonModule, MaterialLibraryModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialLibraryModule, ReactiveFormsModule, RouterLink],
   templateUrl: './comment-form.component.html',
   styleUrl: './comment-form.component.scss'
 })
 export class CommentFormComponent implements OnInit {
   @Input() gameId!: string;
-  @Input() editingComment: Comment | null = null; // Input for the comment being edited
-  @Output() commentUpdated = new EventEmitter<string>(); // Event emitter for updating comment
-  @Output() editingCleared = new EventEmitter<void>(); // Event emitter for clearing editing state
+  @Input() editingComment: Comment | null = null; 
+  @Output() commentUpdated = new EventEmitter<string>(); 
+  @Output() editingCleared = new EventEmitter<void>(); 
   commentForm: FormGroup;
   user: User | null = null;
 

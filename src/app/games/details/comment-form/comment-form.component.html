@@ -1,12 +1,18 @@
-<div class="comment-form-container">
-    <form [formGroup]="commentForm" (ngSubmit)="addComment()">
-      <mat-form-field class="full-width">
-        <mat-label>Add a comment</mat-label>
-        <textarea matInput formControlName="text"></textarea>
-        <mat-error *ngIf="commentForm.get('text')?.hasError('maxlength')">
-          Comment cannot be more than 200 characters
-        </mat-error>
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Post Comment</button>
-    </form>
+<div *ngIf="user; else loginPrompt" class="comment-form-container">
+  <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+    <mat-form-field class="full-width">
+      <mat-label>Add a comment</mat-label>
+      <textarea matInput formControlName="text"></textarea>
+      <mat-error *ngIf="commentForm.get('text')?.hasError('maxlength')">
+        Comment cannot be more than 500 characters
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Post Comment</button>
+  </form>
+</div>
+<ng-template #loginPrompt>
+  <div class="login-prompt">
+    <p>Log in to comment</p>
+    <a routerLink="/login">Log in</a>
   </div>
+</ng-template>

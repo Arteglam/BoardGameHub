@@ -23,6 +23,8 @@
 .comment-form-section {
   width: 25%;
   margin-left: 20px;
+  display: flex;
+  justify-content: flex-start; /* Align the form to the right */
 }
 
 .details-card {

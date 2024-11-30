@@ -1,9 +1,42 @@
 .comment-form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .full-width {
-    width: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+textarea {
+  height: 200px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.login-prompt a {
+  color: #1e88e5;
+  text-decoration: none;
+}
+
+.login-prompt a:hover {
+  text-decoration: underline;
+}
