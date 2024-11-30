@@ -2,12 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 100%
+  height: 100%; /* Ensure the comments container takes up the full height */
 }
 
 .comments-list {
   flex-grow: 1;
-  overflow-y: auto; /* Make the comments list scrollable if it exceeds the available space */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -18,4 +17,13 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
+  max-width: 100%; /* Ensure the comment item does not exceed the container width */
+}
+
+.comment-text {
+  word-wrap: break-word; /* Ensure long words break to the next line */
+  overflow-wrap: break-word; /* Ensure long words break to the next line */
+  white-space: pre-wrap; /* Preserve whitespace and ensure text wraps */
+  word-break: break-word; /* Break long words to prevent overflow */
+  max-width: 100%; /* Ensure the comment text does not exceed the container width */
 }

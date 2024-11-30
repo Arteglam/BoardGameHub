@@ -28,7 +28,7 @@ export class CommentFormComponent implements OnInit {
     private authService: FireAuthService
   ) {
     this.commentForm = this.fb.group({
-      text: ['', [Validators.required, Validators.maxLength(500)]]
+      text: ['', [Validators.maxLength(200)]]
     });
   }
 

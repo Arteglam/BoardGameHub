@@ -3,11 +3,8 @@
       <mat-form-field class="full-width">
         <mat-label>Add a comment</mat-label>
         <textarea matInput formControlName="text"></textarea>
-        <mat-error *ngIf="commentForm.get('text')?.hasError('required')">
-          Comment is required
-        </mat-error>
         <mat-error *ngIf="commentForm.get('text')?.hasError('maxlength')">
-          Comment cannot be more than 500 characters
+          Comment cannot be more than 200 characters
         </mat-error>
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit">Post Comment</button>

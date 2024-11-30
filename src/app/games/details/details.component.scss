@@ -11,12 +11,7 @@
   margin-right: 20px;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensure the comments section takes up the full height */
-}
-
-.comments-list {
-  flex-grow: 1;
-  overflow-y: auto; /* Make the comments list scrollable if it exceeds the available space */
+  height: 100%; 
 }
 
 .details-section {
