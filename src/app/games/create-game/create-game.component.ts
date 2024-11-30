@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { MaterialLibraryModule } from '../../material-library/material-library.module';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { FirestoreService } from '../../services/firestore.service';
-import { Game } from '../../types/games';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '@angular/fire/auth';
 import { FireAuthService } from '../../services/fireauth.service';
@@ -20,6 +19,7 @@ export class CreateGameComponent {
   gameForm: FormGroup;
   errorMessage: string | null = null;
   user: User | null = null;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -37,12 +37,21 @@ export class CreateGameComponent {
       rating: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
       category: ['', [Validators.required, Validators.maxLength(70)]],
       description: ['', [Validators.required, Validators.maxLength(100)]],
-      image: ['', Validators.required,]
+      image: ['', [Validators.required, this.httpValidator]]
     });
 
     this.authService.getUser().subscribe(user => {
       this.user = user;
     });
+  }
+
+  // Custom validator to check if the value starts with "http://" or "https://"
+  httpValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (value && !(value.startsWith('http://') || value.startsWith('https://'))) {
+      return { invalidUrl: 'URL must start with "http://" or "https://"' };
+    }
+    return null;
   }
 
   async onSubmit() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialLibraryModule } from '../../material-library/material-library.module';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirestoreService } from '../../services/firestore.service';
 
@@ -24,16 +24,26 @@ export class EditGameComponent implements OnInit {
   ) {
     this.gameId = this.route.snapshot.paramMap.get('id')!;
     this.gameForm = this.fb.group({
-      title: ['', Validators.required],
-      year: ['', Validators.required],
-      designer: ['', Validators.required],
-      artist: ['', Validators.required],
-      publisher: ['', Validators.required],
-      rating: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
-      category: ['', Validators.required],
-      description: ['', Validators.required],
-      image: ['', Validators.required]
+      title: ['', [Validators.required, Validators.maxLength(70)]],
+      year: ['', [Validators.required, Validators.min(1975)]],
+      designer: ['', [Validators.required, Validators.maxLength(70)]],
+      artist: ['', [Validators.required, Validators.maxLength(70)]],
+      publisher: ['', [Validators.required, Validators.maxLength(70)]],
+      rating: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
+      category: ['', [Validators.required, Validators.maxLength(70)]],
+      description: ['', [Validators.required, Validators.maxLength(100)]],
+      image: ['', [Validators.required, this.httpValidator]]
     });
+  }
+
+
+   // Custom validator to check if the value starts with "http://" or "https://"
+   httpValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (value && !(value.startsWith('http://') || value.startsWith('https://'))) {
+      return { invalidUrl: 'URL must start with "http://" or "https://"' };
+    }
+    return null;
   }
 
   ngOnInit(): void {

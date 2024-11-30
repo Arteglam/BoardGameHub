@@ -64,6 +64,9 @@
           <mat-label>Image URL</mat-label>
           <input matInput formControlName="image">
           <mat-error *ngIf="gameForm.get('image')?.hasError('required')">Image URL is required</mat-error>
+          <mat-error *ngIf="gameForm.get('image')?.hasError('invalidUrl')">
+            {{ gameForm.get('image')?.errors?.['invalidUrl'] }}
+          </mat-error>
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit" class="save-button">Create Game</button>

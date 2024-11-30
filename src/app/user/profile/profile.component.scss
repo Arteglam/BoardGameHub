@@ -165,6 +165,7 @@ mat-card-title {
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .game-image-container:hover .overlay {
