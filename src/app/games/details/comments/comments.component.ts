@@ -7,6 +7,7 @@ import { Comment } from '../../../types/comment';
 import { Timestamp } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-comments',
@@ -18,9 +19,13 @@ import { FormsModule } from '@angular/forms';
 export class CommentsComponent implements OnInit {
   @Input() gameId!: string;
   comments: Comment[] = [];
+  paginatedComments: Comment[] = [];
   user: User | null = null;
   editingComment: Comment | null = null;
   editText: string = '';
+  pageSize = 10;
+  pageIndex = 0;
+  
 
   constructor(
     private firestoreService: FirestoreService,
@@ -38,15 +43,29 @@ export class CommentsComponent implements OnInit {
     this.firestoreService.getComments(this.gameId).subscribe(comments => {
       this.comments = comments.map(comment => ({
         ...comment,
-        createdAt: (comment.createdAt as unknown as Timestamp).toDate()
+        createdAt: (comment.createdAt as any as Timestamp).toDate()
       }));
+      this.paginateComments();
     });
+  }
+
+  paginateComments(): void {
+    const startIndex = this.pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedComments = this.comments.slice(startIndex, endIndex);
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.paginateComments();
   }
 
   async deleteComment(commentId: string): Promise<void> {
     if (this.user) {
       await this.firestoreService.deleteComment(this.gameId, commentId);
       this.comments = this.comments.filter(comment => comment.id !== commentId);
+      this.paginateComments();
     }
   }
 
@@ -63,7 +82,8 @@ export class CommentsComponent implements OnInit {
         comment.text = this.editText;
       }
       this.editingComment = null;
-      this.editText = ''; 
+      this.editText = '';
+      this.paginateComments(); 
     }
   }
 

@@ -1,6 +1,6 @@
 <div class="comments-container">
   <div class="comments-list">
-    <div *ngFor="let comment of comments" class="comment-item">
+    <div *ngFor="let comment of paginatedComments" class="comment-item">
       <p><strong>{{ comment.userName }}</strong> ({{ comment.createdAt | date:'short' }}):</p>
       <div *ngIf="editingComment?.id === comment.id">
         <textarea [(ngModel)]="editText" class="edit-textarea"></textarea>
@@ -14,4 +14,10 @@
       </div>
     </div>
   </div>
+  <mat-paginator
+    [length]="comments.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
 </div>
