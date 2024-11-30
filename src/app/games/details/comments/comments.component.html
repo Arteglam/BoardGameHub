@@ -1,0 +1,10 @@
+<div class="comments-container">
+  <div class="comments-list">
+    <div *ngFor="let comment of comments" class="comment-item">
+      <p><strong>{{ comment.userName }}</strong> ({{ comment.createdAt | date:'short' }}):</p>
+      <p>{{ comment.text }}</p>
+      <button *ngIf="comment.userId === user?.uid" mat-button (click)="deleteComment(comment.id)">Delete</button>
+      <button *ngIf="comment.userId === user?.uid" mat-button (click)="updateComment(comment.id, 'New text')">Edit</button>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialLibraryModule } from '../../material-library/material-library.module';
 import { CommonModule } from '@angular/common';
-import { Game } from '../../types/games';
+import { Game } from '../../types/game';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirestoreService } from '../../services/firestore.service';
 import { User } from '@angular/fire/auth';
 import { FireAuthService } from '../../services/fireauth.service';
+import { CommentsComponent } from './comments/comments.component';
+import { CommentFormComponent } from './comment-form/comment-form.component';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [MaterialLibraryModule, CommonModule],
+  imports: [MaterialLibraryModule, CommonModule, CommentsComponent, CommentFormComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
@@ -35,8 +37,10 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  async loadGameDetails() {
-    this.game = await this.firestoreService.getGameById(this.gameId);
+  loadGameDetails(): void {
+    this.firestoreService.getGameById(this.gameId).then(game => {
+      this.game = game;
+    });
   }
 
   async deleteGame() {

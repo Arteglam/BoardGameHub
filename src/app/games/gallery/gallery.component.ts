@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaterialLibraryModule } from '../../material-library/material-library.module';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Game } from '../../types/games';
+import { Game } from '../../types/game';
 import { FirestoreService } from '../../services/firestore.service';
 import { RouterLink } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';

@@ -1,15 +1,38 @@
 .details-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
   padding: 20px;
-  background-color: #f0f4f8; 
+  background-color: #f0f4f8;
+}
+
+.comments-section {
+  width: 25%;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure the comments section takes up the full height */
+}
+
+.comments-list {
+  flex-grow: 1;
+  overflow-y: auto; /* Make the comments list scrollable if it exceeds the available space */
+}
+
+.details-section {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form-section {
+  width: 25%;
+  margin-left: 20px;
 }
 
 .details-card {
   width: 100%;
-  max-width: 800px; 
+  max-width: 800px;
   padding: 20px;
   border-radius: 5px;
   background-color: #fff;
@@ -30,7 +53,7 @@ mat-card-content {
 
 .game-image {
   width: 100%;
-  max-width: 100%; 
+  max-width: 100%;
   height: auto;
   object-fit: cover;
   margin-top: 10px;

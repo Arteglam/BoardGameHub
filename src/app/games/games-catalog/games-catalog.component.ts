@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MaterialLibraryModule } from '../../material-library/material-library.module';
-import { Game } from '../../types/games';
+import { Game } from '../../types/game';
 import { FirestoreService } from '../../services/firestore.service';
 import { CommonModule } from '@angular/common';
 import { FireAuthService } from '../../services/fireauth.service';

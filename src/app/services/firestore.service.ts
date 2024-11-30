@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, getDoc, orderBy, query, Query, setDoc, Timestamp, updateDoc } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
-import { Game } from "../types/games";
+import { Game } from "../types/game";
 import { getDownloadURL, ref, Storage, uploadBytes } from "@angular/fire/storage";
+import { Comment } from "../types/comment";
 
 @Injectable({
   providedIn: 'root'
@@ -109,4 +110,33 @@ export class FirestoreService {
     const contactCollection = collection(this.firestore, 'ContactForms');
     await addDoc(contactCollection, contactData);
   }
+
+    // Get comments for a specific game
+    getComments(gameId: string): Observable<Comment[]> {
+      const commentsCollection = collection(this.firestore, `Games/${gameId}/Comments`);
+      const commentsQuery = query(commentsCollection, orderBy('createdAt', 'desc'));
+      return collectionData(commentsQuery, { idField: 'id' }) as Observable<Comment[]>;
+    }
+  
+    // Add a comment to a specific game
+    async addComment(gameId: string, comment: Comment): Promise<void> {
+      const commentsCollection = collection(this.firestore, `Games/${gameId}/Comments`);
+      await addDoc(commentsCollection, comment);
+    }
+  
+    // Delete a comment from a specific game
+    async deleteComment(gameId: string, commentId: string): Promise<void> {
+      const commentDocRef = doc(this.firestore, `Games/${gameId}/Comments/${commentId}`);
+      await deleteDoc(commentDocRef);
+    }
+  
+    // Update a comment for a specific game
+    async updateComment(gameId: string, commentId: string, newText: string): Promise<void> {
+      const commentDocRef = doc(this.firestore, `Games/${gameId}/Comments/${commentId}`);
+      await updateDoc(commentDocRef, { text: newText });
+    }
+
+    generateId(): string {
+      return doc(collection(this.firestore, 'id')).id;
+    }
 }

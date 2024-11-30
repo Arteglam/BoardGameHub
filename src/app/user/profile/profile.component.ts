@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaterialLibraryModule } from '../../material-library/material-library.module';
 import { CommonModule } from '@angular/common';
 import { User } from '@angular/fire/auth';
-import { Game } from '../../types/games';
+import { Game } from '../../types/game';
 import { FireAuthService } from '../../services/fireauth.service';
 import { FirestoreService } from '../../services/firestore.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
