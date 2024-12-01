@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { FireAuthService } from '../services/fireauth.service';
 
-
 @Injectable({
   providedIn: 'root'
 })

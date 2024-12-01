@@ -8,9 +8,9 @@
       <mat-card-content>
         <div class="games-list">
           <div class="game-item" *ngFor="let game of userGames">
-            <div class="game-image-container" (click)="goToDetails(game._id)">
-              <img [src]="game.image" alt="{{ game.title }}" class="game-image" />
-              <div class="overlay">
+            <div class="game-image-container">
+              <img [src]="game.image" alt="{{ game.title }}" class="game-image" (click)="goToDetails(game._id)" />
+              <div class="overlay" (click)="goToDetails(game._id)">
                 <span class="overlay-text">Details</span>
               </div>
               <button mat-icon-button class="remove-button" (click)="confirmRemoveGame(game)">
