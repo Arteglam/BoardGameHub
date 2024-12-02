@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/boardgamehub",
+    "public": "dist/boardgamehub/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,5 +12,11 @@
         "destination": "/index.html"
       }
     ]
-  }
+  },
+  "rewrites": [
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
+  ]
 }
