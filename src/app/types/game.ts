@@ -11,4 +11,5 @@ export interface Game {
     image: string;
     userId: string;
     createdAt: { seconds: number; nanoseconds: number };
+    userDisplayName: string;
 }

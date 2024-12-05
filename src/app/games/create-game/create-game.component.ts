@@ -58,7 +58,7 @@ export class CreateGameComponent {
     if (this.gameForm.valid && this.user) {
       const newGame = this.gameForm.value;
       try {
-        await this.firestoreService.createGame(newGame, this.user.uid);
+        await this.firestoreService.createGame(newGame, this.user.uid, this.user.displayName!);
         this.snackBar.open('Game created successfully!', 'Close', {
           duration: 3000,
         });

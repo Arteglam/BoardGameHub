@@ -31,9 +31,9 @@ export class FirestoreService {
   }
 
   // Create a new game
-  async createGame(game: Game, userId: string): Promise<void> {
+  async createGame(game: Game, userId: string, userDisplayName: string): Promise<void> {
     const gamesCollection = collection(this.firestore, 'Games');
-    await addDoc(gamesCollection, { ...game, userId, createdAt: Timestamp.now() });
+    await addDoc(gamesCollection, { ...game, userId, userDisplayName, createdAt: Timestamp.now() });
   }
 
   // Update game
