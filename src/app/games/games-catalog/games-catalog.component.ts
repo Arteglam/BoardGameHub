@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { FireAuthService } from '../../services/fireauth.service';
 import { User } from '@angular/fire/auth';
 import { PageEvent } from '@angular/material/paginator';
+import { ElapsedTimePipe } from '../../shared/elapsed-time.pipe';
 
 @Component({
   selector: 'app-games-catalog',
   standalone: true,
-  imports: [MaterialLibraryModule, RouterLink, CommonModule],
+  imports: [MaterialLibraryModule, RouterLink, CommonModule, ElapsedTimePipe],
   templateUrl: './games-catalog.component.html',
   styleUrl: './games-catalog.component.scss'
 })

@@ -28,6 +28,7 @@
             <p><mat-icon>star</mat-icon><strong>Rating:</strong> {{ game.rating }}</p>
             <p><mat-icon>category</mat-icon><strong>Category:</strong> {{ game.category }}</p>
             <p><mat-icon>description</mat-icon>{{ game.description }}</p>
+            <p><mat-icon>schedule</mat-icon>created {{ game.createdAt | elapsedTime  }} by <mat-icon>person</mat-icon>{{user?.displayName}}</p>
           </mat-card-content>
           <mat-card-actions>
             <button
