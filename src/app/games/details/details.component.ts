@@ -14,7 +14,7 @@ import { ConfirmDeleteDialogComponent } from '../../shared/confirm-delete-dialog
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [MaterialLibraryModule, CommonModule, CommentsComponent, CommentFormComponent, ConfirmDeleteDialogComponent],
+  imports: [MaterialLibraryModule, CommonModule, CommentsComponent, CommentFormComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })

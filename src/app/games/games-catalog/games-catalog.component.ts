@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FireAuthService } from '../../services/fireauth.service';
 import { User } from '@angular/fire/auth';
 import { PageEvent } from '@angular/material/paginator';
-import { ElapsedTimePipe } from '../../shared/elapsed-time.pipe';
+import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
 
 @Component({
   selector: 'app-games-catalog',

@@ -11,6 +11,7 @@ import { Comment } from "../types/comment";
 export class FirestoreService {
   constructor(private firestore: Firestore, private storage: Storage) { }
 
+  // * Games service methods
   // Get games sorted by creation date
   getGames(): Observable<Game[]> {
     const gamesCollection = collection(this.firestore, 'Games');
@@ -48,6 +49,7 @@ export class FirestoreService {
     await deleteDoc(gameDocRef);
   }
 
+  //* User profile service methods
   // Create user profile
   async createUserProfile(userId: string, profileData: { email: string, displayName: string }): Promise<void> {
     const userDocRef = doc(this.firestore, `Users/${userId}`);
@@ -105,38 +107,41 @@ export class FirestoreService {
     return gameDocSnap.exists();
   }
 
+  //* Contact form service methods
   // Save contact form submission
   async saveContactForm(contactData: { name: string, email: string, message: string }): Promise<void> {
     const contactCollection = collection(this.firestore, 'ContactForms');
     await addDoc(contactCollection, contactData);
   }
 
-    // Get comments for a specific game
-    getComments(gameId: string): Observable<Comment[]> {
-      const commentsCollection = collection(this.firestore, `Games/${gameId}/Comments`);
-      const commentsQuery = query(commentsCollection, orderBy('createdAt', 'desc'));
-      return collectionData(commentsQuery, { idField: 'id' }) as Observable<Comment[]>;
-    }
-  
-    // Add a comment to a specific game
-    async addComment(gameId: string, comment: Comment): Promise<void> {
-      const commentsCollection = collection(this.firestore, `Games/${gameId}/Comments`);
-      await addDoc(commentsCollection, comment);
-    }
-  
-    // Delete a comment from a specific game
-    async deleteComment(gameId: string, commentId: string): Promise<void> {
-      const commentDocRef = doc(this.firestore, `Games/${gameId}/Comments/${commentId}`);
-      await deleteDoc(commentDocRef);
-    }
-  
-    // Update a comment for a specific game
-    async updateComment(gameId: string, commentId: string, newText: string): Promise<void> {
-      const commentDocRef = doc(this.firestore, `Games/${gameId}/Comments/${commentId}`);
-      await updateDoc(commentDocRef, { text: newText });
-    }
+  //* Comments service methods
+  // Get comments for a specific game
+  getComments(gameId: string): Observable<Comment[]> {
+    const commentsCollection = collection(this.firestore, `Games/${gameId}/Comments`);
+    const commentsQuery = query(commentsCollection, orderBy('createdAt', 'desc'));
+    return collectionData(commentsQuery, { idField: 'id' }) as Observable<Comment[]>;
+  }
 
-    generateId(): string {
-      return doc(collection(this.firestore, 'id')).id;
-    }
+  // Add a comment to a specific game
+  async addComment(gameId: string, comment: Comment): Promise<void> {
+    const commentsCollection = collection(this.firestore, `Games/${gameId}/Comments`);
+    await addDoc(commentsCollection, comment);
+  }
+
+  // Delete a comment from a specific game
+  async deleteComment(gameId: string, commentId: string): Promise<void> {
+    const commentDocRef = doc(this.firestore, `Games/${gameId}/Comments/${commentId}`);
+    await deleteDoc(commentDocRef);
+  }
+
+  // Update a comment for a specific game
+  async updateComment(gameId: string, commentId: string, newText: string): Promise<void> {
+    const commentDocRef = doc(this.firestore, `Games/${gameId}/Comments/${commentId}`);
+    await updateDoc(commentDocRef, { text: newText });
+  }
+
+  // Generate a new ID
+  generateId(): string {
+    return doc(collection(this.firestore, 'id')).id;
+  }
 }
