@@ -48,7 +48,7 @@ export class GamesCatalogComponent implements OnInit {
       this.filteredGames = games;
       this.sortGames();
       this.paginateGames();
-      this.loading = false; // Set loading to false when games are loaded
+      this.loading = false;
     });
   }
 
@@ -98,9 +98,7 @@ export class GamesCatalogComponent implements OnInit {
   }
 
   trackById(index: number, game: Game): string {
-
     return game._id;
-
   }
 
 }
