@@ -23,5 +23,5 @@ The project uses Angular material library.
 
 You will need the apiKey in the environment.ts file to access the Firebase functionality.
 
-The application is currently hosted with Firebase on this address - `https://boardgamehub-4a607.web.app/`, but not the final version.
+The application is currently hosted with Firebase on this address - `https://boardgamehub-4a607.web.app/`.
 ## 
